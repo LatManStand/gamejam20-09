@@ -39,5 +39,13 @@ public class MouseController : MonoBehaviour
             currentCuerda.EndPoint = mouseOver.transform;
             cuerdas.Add(currentCuerda);
         }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            clickedChinche = null;
+            if (currentCuerda != null)
+            {
+                Destroy(currentCuerda.gameObject);
+            }
+        }
     }
 }
