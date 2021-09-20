@@ -33,7 +33,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (!isSettingsOpen)
         {
-            SceneManager.LoadScene(3, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
             isSettingsOpen = true;
         }
         else
