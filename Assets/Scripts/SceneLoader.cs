@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    public SceneLoader instance;
+    public static SceneLoader instance;
 
     public bool isSettingsOpen = false;
 
