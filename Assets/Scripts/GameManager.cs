@@ -6,16 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private int slot;
 
     // IMPORTANT DATA
-
     public string language;
     public bool isCargarPartida;
-
-
-    public bool hasHorse = false;
-    public bool hasToothbrush = false;
     public AudioSource audiosrc;
 
     public Scene lastScene;
@@ -56,14 +50,13 @@ public class GameManager : MonoBehaviour
     }
 
     //Called to start de game
-    public void StartGame(int _slot)
+    public void StartGame()
     {
-        slot = _slot;
         // IMPORTANT DATA
 
         SaveData();
 
-        GameManager.instance.LoadScene("IntroGame");
+        GameManager.instance.LoadScene("Map");
     }
 
     public void QuitGame()
@@ -100,32 +93,5 @@ public class GameManager : MonoBehaviour
         //PlayerPrefs.SetInt("helpedWolf" + slot, helpedWolf);
 
         PlayerPrefs.Save();
-    }
-
-    public void setSlot(int _slot)
-    {
-        slot = _slot;
-    }
-
-    public void LoadData(int _slot)
-    {
-        slot = _slot;
-        // helpedWolf = PlayerPrefs.GetInt("helpedWolf" + helpedWolf);
-    }
-
-    public int existeSlotPartidaGuardada(int _slot)
-    {
-        return PlayerPrefs.GetInt("Game" + _slot);
-    }
-
-    public int getDiaPartidaGuardada(int _slot)
-    {
-        return PlayerPrefs.GetInt("Game" + _slot);
-    }
-
-    public void setLanguage(string lg)
-    {
-        this.language = lg;
-        LoadScene("MainMenu");
     }
 }

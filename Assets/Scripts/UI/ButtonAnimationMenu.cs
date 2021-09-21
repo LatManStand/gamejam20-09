@@ -59,18 +59,19 @@ public class ButtonAnimationMenu : MonoBehaviour
 
     public void ActionButton()
     {
-        if (GameManager.instance.getIsCargarPartida())
-        {
-            if (GameManager.instance.existeSlotPartidaGuardada(slot) != 0)
-            {
-                GameManager.instance.LoadData(slot);
-                GameManager.instance.LoadScene("World");
-            }
-        }
-        else
-        {
-            GameManager.instance.StartGame(slot);
-        }
+        GameManager.instance.StartGame();
+        //if (GameManager.instance.getIsCargarPartida())
+        //{
+        //    if (GameManager.instance.existeSlotPartidaGuardada(slot) != 0)
+        //    {
+        //        GameManager.instance.LoadData(slot);
+        //        GameManager.instance.LoadScene("World");
+        //    }
+        //}
+        //else
+        //{
+            
+        //}
     }
 
     public void OnMouseEnter()
