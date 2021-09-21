@@ -1,11 +1,11 @@
-﻿Shader "Unlit/NewUnlitShader"
+﻿Shader "Unlit/Outline"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Position("Posicion", Vector) = (0,0,0,0)
         _Speed("Velocidad", float) = 0
-        _Outline("Outline", range(0,0.1)) = 0.1
+        _Outline("Outline", range(0,5)) = 0.1
     }
     SubShader
     {
@@ -43,6 +43,7 @@
             {
                 v2f o;
                 v.vertexPos.xyz += v.normal * _Outline;
+                //v.vertexPos.xyz *= 1 + _Outline;
                 o.vertex = UnityObjectToClipPos(v.vertexPos);
                 return o;
             }
