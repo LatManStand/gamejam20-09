@@ -6,18 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/UI_Levels/MainMenu.unity
     guid: 177829ee538ad194da11e96b86786e6d
-  - enabled: 1
-    path: Assets/Scenes/LevelSelector.unity
-    guid: 603aed92df37b5a41a02fb931b3363d7
-  - enabled: 1
-    path: Assets/Scenes/Settings.unity
-    guid: 6e70aa9695e8ab2428f135dc857f661e
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 55bdced13c8f4844db65f52e0ec55fc3
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: ef7a6d972d34f1e488e2440dbf676dab
+    path: Assets/Scenes/Map.unity
+    guid: a7318573032b4d748990fe9d99724b95
+  - enabled: 1
+    path: Assets/Scenes/UI_Levels/Settings.unity
+    guid: 6e70aa9695e8ab2428f135dc857f661e
+  - enabled: 1
+    path: Assets/Scenes/UI_Levels/Creditos.unity
+    guid: 1d3a6ef9ef63f8949958b5207acfa597
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/Puzzle_1.unity
+    guid: 9dae52d5bd8257045a378218e4a9f665
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/Puzzle_2.unity
+    guid: 94334b1b2f3107041b3c068d44d3b8c7
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/Puzzle_3.unity
+    guid: 179f2e027b2762a4fad6a47542262afd
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/Puzzle_4.unity
+    guid: f307ec9d2af2aa94894a7247e960027f
   m_configObjects: {}
