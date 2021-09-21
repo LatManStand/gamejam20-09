@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    public SceneLoader instance;
+    public static SceneLoader instance;
 
     public bool isSettingsOpen = false;
 
@@ -33,7 +33,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (!isSettingsOpen)
         {
-            SceneManager.LoadScene(3, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
             isSettingsOpen = true;
         }
         else
