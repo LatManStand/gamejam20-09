@@ -24,6 +24,7 @@ public class CuerdaPuente : MonoBehaviour
         {
             ropeSegments.Add(new RopeSegment(ropeStartPoint));
             ropeStartPoint.y -= ropeSegLen;
+
         }
     }
 
