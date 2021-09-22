@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 4f954f7637854ef4daf271fad84d98bd, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -146,8 +146,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_selection: {fileID: 1182718603}
+  obj_material: {fileID: 1823461157}
   folderPath: Scenes/Puzzles/Puzzle_
   puzzleNumber: 1.3
+  isUnlocked: 0
 --- !u!65 &52006291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -585,8 +587,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_selection: {fileID: 1561438877}
+  obj_material: {fileID: 907597219}
   folderPath: Scenes/Puzzles/Puzzle_
   puzzleNumber: 1.4
+  isUnlocked: 0
 --- !u!65 &260703555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -943,8 +947,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_selection: {fileID: 1146951143}
+  obj_material: {fileID: 1822172508}
   folderPath: Scenes/Puzzles/Puzzle_
   puzzleNumber: 1.1
+  isUnlocked: 0
 --- !u!65 &504671905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1097,7 +1103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7091232327783610064, guid: 3865d15004e92de47a2bba98f2ef6624, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7091232327783610066, guid: 3865d15004e92de47a2bba98f2ef6624, type: 3}
       propertyPath: m_RootOrder
@@ -1218,6 +1224,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+--- !u!1 &638790213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+  m_PrefabInstance: {fileID: 638790212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &655493669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,6 +1786,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+--- !u!1 &907597219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+  m_PrefabInstance: {fileID: 907597218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &965598135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2742,8 +2758,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_selection: {fileID: 797681507}
+  obj_material: {fileID: 638790213}
   folderPath: Scenes/Puzzles/Puzzle_
   puzzleNumber: 1.2
+  isUnlocked: 0
 --- !u!65 &1405750418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3234,6 +3252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+--- !u!1 &1822172508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+  m_PrefabInstance: {fileID: 1822172507}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1823461156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3307,6 +3330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+--- !u!1 &1823461157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 0905189aed7e53f44af26663aafc68dd, type: 3}
+  m_PrefabInstance: {fileID: 1823461156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1981761529
 GameObject:
   m_ObjectHideFlags: 3
