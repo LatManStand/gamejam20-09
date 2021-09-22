@@ -6,48 +6,68 @@ using UnityEngine;
 public class MenuPrincipalScript : MonoBehaviour
 {
     public GameObject menu1;
-    public GameObject video;
-    public GameObject backgroud;
+    public GameObject menu2;
+    //public GameObject video;
+    //public GameObject backgroud;
 
     private void Start()
     {
-        Menu1();
+        OpenMenu1();
     }
 
-    public void Menu1()
+    private void OpenMenu1()
     {
-        GameManager.instance.setIsCargarPartida(false);
         menu1.SetActive(true);
-        backgroud.SetActive(true);
-        video.SetActive(false);
+        menu2.SetActive(false);
+        //backgroud.SetActive(true);
+        //video.SetActive(false);
     }
 
-    public void EmpezarPartida()
-    {
-        StartCoroutine(Animation());
-    }
-
-    IEnumerator Animation()
+    private void OpenMenu2()
     {
         menu1.SetActive(false);
-        video.SetActive(true);
-        backgroud.SetActive(false);
-        yield return new WaitForSeconds(3.0f);
-        GameManager.instance.LoadScene("Controls");
+        menu2.SetActive(true);
+        //backgroud.SetActive(true);
+        //video.SetActive(false);
+    }
+
+    //Este método lo usaremos para meter un vídeo o una animación.
+    // Ya vermeos qué hacemos.
+    //IEnumerator StartGameAnimation()
+    //{
+    //    menu1.SetActive(false);
+    //    //video.SetActive(true);
+    //    //backgroud.SetActive(false);
+    //    yield return new WaitForSeconds(3.0f);
+    //    GameManager.instance.LoadScene("World");
+    //}
+
+    // ---------------------------------- Métodos para el MENU 1 ---------------------------------- 
+    public void StartGame()
+    {
+        //StartCoroutine(StartGameAnimation());
+
+        GameManager.instance.StartGame();
+    }
+
+    public void ContinueGame()
+    {
+        GameManager.instance.LoadScene("Map");
     }
 
     public void GoToCredits()
     {
-        GameManager.instance.LoadScene("Creditos");
+        GameManager.instance.LoadScene("Credits");
     }
     
     public void GoToOptions()
     {
-        GameManager.instance.LoadScene("Options");
+        OpenMenu2();
     }
 
-    public void QuitGame()
+    // ---------------------------------- Métodos para el MENU 2 ---------------------------------- 
+    public void GoBackToInitalMenu()
     {
-        GameManager.instance.QuitGame();
+        OpenMenu1();
     }
 }

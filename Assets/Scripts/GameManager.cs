@@ -34,15 +34,6 @@ public class GameManager : MonoBehaviour
     {
         isCargarPartida = false;
     }
-    public void setIsCargarPartida(bool value)
-    {
-        isCargarPartida = value;
-    }
-
-    public bool getIsCargarPartida()
-    {
-        return isCargarPartida;
-    }
 
     private void OnApplicationQuit()
     {
@@ -52,10 +43,12 @@ public class GameManager : MonoBehaviour
     //Called to start de game
     public void StartGame()
     {
-        // IMPORTANT DATA
+        // INIT THE DATA
 
+        // CREATE A NEW SAVE DATA
         SaveData();
 
+        // LOAD THE GAME
         GameManager.instance.LoadScene("Map");
     }
 
