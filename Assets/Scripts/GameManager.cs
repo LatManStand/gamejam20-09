@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         // INIT THE DATA
+        setNewGame();
 
         // CREATE A NEW SAVE DATA
         SaveData();
@@ -84,5 +85,14 @@ public class GameManager : MonoBehaviour
         //PlayerPrefs.SetInt("helpedWolf" + slot, helpedWolf);
 
         PlayerPrefs.Save();
+    }
+
+
+    private void setNewGame()
+    {
+        PlayerPrefs.SetInt("puzzle_1.1", 1);
+        PlayerPrefs.SetInt("puzzle_1.2", 0);
+        PlayerPrefs.SetInt("puzzle_1.3", 0);
+        PlayerPrefs.SetInt("puzzle_1.4", 0);
     }
 }
