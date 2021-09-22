@@ -18,15 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/UI_Levels/Credits.unity
     guid: 1d3a6ef9ef63f8949958b5207acfa597
   - enabled: 1
-    path: Assets/Scenes/Puzzles/Puzzle_1.unity
+    path: Assets/Scenes/Puzzles/Puzzle_1.1.unity
     guid: 9dae52d5bd8257045a378218e4a9f665
   - enabled: 1
-    path: Assets/Scenes/Puzzles/Puzzle_2.unity
+    path: Assets/Scenes/Puzzles/Puzzle_1.2.unity
     guid: 94334b1b2f3107041b3c068d44d3b8c7
   - enabled: 1
-    path: Assets/Scenes/Puzzles/Puzzle_3.unity
+    path: Assets/Scenes/Puzzles/Puzzle_1.3.unity
     guid: 179f2e027b2762a4fad6a47542262afd
   - enabled: 1
-    path: Assets/Scenes/Puzzles/Puzzle_4.unity
+    path: Assets/Scenes/Puzzles/Puzzle_1.4.unity
     guid: f307ec9d2af2aa94894a7247e960027f
   m_configObjects: {}

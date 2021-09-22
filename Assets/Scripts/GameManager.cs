@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     // IMPORTANT DATA
     public string language;
-    public bool isCargarPartida;
     public AudioSource audiosrc;
 
     public Scene lastScene;
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        isCargarPartida = false;
     }
 
     private void OnApplicationQuit()
