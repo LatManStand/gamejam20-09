@@ -18,7 +18,7 @@ public class CuerdaPuente : MonoBehaviour
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        Vector3 ropeStartPoint = StartPoint.position;
+        Vector3 ropeStartPoint = StartPoint.position - Vector3.forward * 3;
 
         for (int i = 0; i < segmentLength; i++)
         {
@@ -42,12 +42,12 @@ public class CuerdaPuente : MonoBehaviour
     private void Simulate()
     {
         // SIMULATION
-        Vector2 forceGravity = new Vector2(0f, -1f);
+        Vector3 forceGravity = new Vector3(0f, -1f);
 
         for (int i = 1; i < segmentLength; i++)
         {
             RopeSegment firstSegment = ropeSegments[i];
-            Vector2 velocity = firstSegment.posNow - firstSegment.posOld;
+            Vector3 velocity = firstSegment.posNow - firstSegment.posOld;
             firstSegment.posOld = firstSegment.posNow;
             firstSegment.posNow += velocity;
             firstSegment.posNow += forceGravity * Time.fixedDeltaTime;
@@ -92,7 +92,7 @@ public class CuerdaPuente : MonoBehaviour
                 changeDir = (secondSeg.posNow - firstSeg.posNow).normalized;
             }
 
-            Vector2 changeAmount = changeDir * error;
+            Vector3 changeAmount = changeDir * error;
             if (i != 0)
             {
                 firstSeg.posNow -= changeAmount * 0.5f;
@@ -125,10 +125,10 @@ public class CuerdaPuente : MonoBehaviour
 
     public struct RopeSegment
     {
-        public Vector2 posNow;
-        public Vector2 posOld;
+        public Vector3 posNow;
+        public Vector3 posOld;
 
-        public RopeSegment(Vector2 pos)
+        public RopeSegment(Vector3 pos)
         {
             posNow = pos;
             posOld = pos;
