@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +10,10 @@ public class CuerdaPuente : MonoBehaviour
     public Transform EndPoint;
 
     private LineRenderer lineRenderer;
-    private List<RopeSegment> ropeSegments = new List<RopeSegment>();
     private float ropeSegLen = 0.25f;
-    private int segmentLength = 35;
+    public int segmentLength = 35;
+    [HideInInspector]
+    public List<RopeSegment> ropeSegments = new List<RopeSegment>();
     private float lineWidth = 0.1f;
 
     // Use this for initialization
@@ -26,6 +28,7 @@ public class CuerdaPuente : MonoBehaviour
             ropeStartPoint.y -= ropeSegLen;
 
         }
+        StartCoroutine(nameof(Recalculate));
     }
 
     // Update is called once per frame
@@ -37,6 +40,20 @@ public class CuerdaPuente : MonoBehaviour
     private void FixedUpdate()
     {
         Simulate();
+    }
+
+    public IEnumerator Recalculate()
+    {
+        yield return new WaitForSeconds(0.5f);
+        int desiredSegmentLength = Mathf.CeilToInt(Vector3.Distance(StartPoint.position, EndPoint.position) / ropeSegLen * 1.15f);
+
+        for (int i = segmentLength - 1; i > desiredSegmentLength; i--)
+        {
+            ropeSegments.RemoveAt(i);
+            segmentLength--;
+
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     private void Simulate()
@@ -65,13 +82,17 @@ public class CuerdaPuente : MonoBehaviour
     {
         //Constrant to First Point 
         RopeSegment firstSegment = ropeSegments[0];
-        firstSegment.posNow = StartPoint.position;
+        Vector3 aux = StartPoint.position;
+        aux.z = -3;
+        firstSegment.posNow = aux;
         ropeSegments[0] = firstSegment;
 
 
         //Constrant to Second Point 
         RopeSegment endSegment = ropeSegments[ropeSegments.Count - 1];
-        endSegment.posNow = EndPoint.position;
+        aux = EndPoint.position;
+        aux.z = -3;
+        endSegment.posNow = aux;
         ropeSegments[ropeSegments.Count - 1] = endSegment;
 
         for (int i = 0; i < segmentLength - 1; i++)
