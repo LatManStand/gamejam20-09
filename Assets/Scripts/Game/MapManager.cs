@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,26 @@ public class MapManager : MonoBehaviour
     public GameObject MainCamera;
     public GameObject transion1;
 
+    public GameObject dialogueSystem;
+
     // Start is called before the first frame update
     void Start()
     {
         starTranstion = false;
+        dialogueSystem.SetActive(false);
         MainCamera.SetActive(true);
         transion1.SetActive(false);
+    }
+
+    private void FixedUpdate()
+    {
+        if (PlayerPrefs.GetInt("new_game") == 1)
+        {
+            PlayerPrefs.SetInt("new_game", 0);
+            PlayerPrefs.Save();
+            Debug.Log(PlayerPrefs.GetInt("new_game"));
+            Dialogue1();
+        }
     }
 
     public void goToLevel(int levelNumber)
@@ -33,5 +48,21 @@ public class MapManager : MonoBehaviour
                 transion1.SetActive(true);
                 break;
         }
+    }
+
+    public void goBack()
+    {
+        GameManager.instance.LoadScene("MainMenu");
+    }
+
+    void Dialogue1()
+    {
+        StartDialogue();
+        dialogueSystem.SetActive(true);
+    }
+
+    IEnumerator StartDialogue()
+    {
+        yield return new WaitForSeconds(5f);
     }
 }

@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-
-	public Text nameText;
-	public Text dialogueText;
-
+	public TMP_Text dialogueText;
+	public Dialogue dialogue;
 	public Animator animator;
 
 	public float velocity = 1.0f;
@@ -16,21 +15,24 @@ public class DialogueManager : MonoBehaviour
 	private Queue<string> sentences;
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
 		sentences = new Queue<string>();
 	}
 
-	public void StartDialogue(Dialogue dialogue)
+	public void StartDialogue()
 	{
+		Debug.Log("Set IsOpen --> True");
 		animator.SetBool("IsOpen", true);
+		Debug.Log("IsOpen --> " + animator.GetBool("IsOpen"));
 
-		nameText.text = dialogue.name;
 
 		sentences.Clear();
 
+		Debug.Log("sentences length: " + dialogue.sentences.Length);
 		foreach (string sentence in dialogue.sentences)
 		{
+			Debug.Log("sentence: " + sentence.ToCharArray());
 			sentences.Enqueue(sentence);
 		}
 

@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string nameLevel)
     {
         lastScene = SceneManager.GetActiveScene();
-        if (nameLevel.Equals("Ending") || nameLevel.Equals("Creditos"))
+        if (nameLevel.Equals("Ending") || nameLevel.Equals("Credits"))
         {
             audiosrc.Stop();
         }
@@ -84,15 +84,20 @@ public class GameManager : MonoBehaviour
         // SAVE IMPORTANT DATA
         //PlayerPrefs.SetInt("helpedWolf" + slot, helpedWolf);
 
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
     }
 
 
     private void setNewGame()
     {
+        PlayerPrefs.SetInt("new_game", 1);
+        Debug.Log(PlayerPrefs.GetInt("new_game"));
+
         PlayerPrefs.SetInt("puzzle_1.1", 1);
         PlayerPrefs.SetInt("puzzle_1.2", 0);
         PlayerPrefs.SetInt("puzzle_1.3", 0);
         PlayerPrefs.SetInt("puzzle_1.4", 0);
+
+        PlayerPrefs.Save();
     }
 }
