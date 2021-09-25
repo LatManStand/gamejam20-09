@@ -25,9 +25,6 @@ public class MapManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("new_game") == 1)
         {
-            PlayerPrefs.SetInt("new_game", 0);
-            PlayerPrefs.Save();
-            Debug.Log(PlayerPrefs.GetInt("new_game"));
             Dialogue1();
         }
     }
@@ -57,12 +54,9 @@ public class MapManager : MonoBehaviour
 
     void Dialogue1()
     {
-        StartDialogue();
+        PlayerPrefs.SetInt("new_game", 0);
+        PlayerPrefs.Save();
         dialogueSystem.SetActive(true);
-    }
-
-    IEnumerator StartDialogue()
-    {
-        yield return new WaitForSeconds(5f);
+        dialogueSystem.GetComponent<DialogueTrigger>().TriggerDialogue();
     }
 }

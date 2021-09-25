@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public Scene lastScene;
 
+    private bool isGamePaused;
+
     private void Awake()
     {
         Application.targetFrameRate = 300;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isGamePaused = false;
     }
 
     private void OnApplicationQuit()
@@ -49,6 +52,23 @@ public class GameManager : MonoBehaviour
 
         // LOAD THE GAME
         GameManager.instance.LoadScene("Map");
+    }
+
+    public void PauseGame()
+    {
+        //Any related with pause game
+        isGamePaused = true;
+    }
+
+    public void ResumenGame()
+    {
+        //Any related with pause game
+        isGamePaused = false;
+    }
+
+    public bool isPause ()
+    {
+        return isGamePaused;
     }
 
     public void QuitGame()
@@ -84,7 +104,7 @@ public class GameManager : MonoBehaviour
         // SAVE IMPORTANT DATA
         //PlayerPrefs.SetInt("helpedWolf" + slot, helpedWolf);
 
-        //PlayerPrefs.Save();
+        PlayerPrefs.Save();
     }
 
 
@@ -97,7 +117,5 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("puzzle_1.2", 0);
         PlayerPrefs.SetInt("puzzle_1.3", 0);
         PlayerPrefs.SetInt("puzzle_1.4", 0);
-
-        PlayerPrefs.Save();
     }
 }

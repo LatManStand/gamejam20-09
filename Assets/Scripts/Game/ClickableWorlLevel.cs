@@ -26,7 +26,7 @@ public class ClickableWorlLevel : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if(!selected)
+        if(!GameManager.instance.isPause() && !selected)
         {
             obj_selection.SetActive(true);
         }
@@ -34,7 +34,7 @@ public class ClickableWorlLevel : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (!selected)
+        if (!GameManager.instance.isPause() && !selected)
         {
             obj_selection.SetActive(false);
         }
@@ -42,7 +42,7 @@ public class ClickableWorlLevel : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!selected)
+        if (!GameManager.instance.isPause() && !selected)
         {
             selected = true;
             var mp = mapManager.GetComponent<MapManager>();

@@ -21,13 +21,13 @@ public class ClickablePuzzleLevel : MonoBehaviour
         isUnlocked = PlayerPrefs.GetInt("puzzle_" + puzzleNumber) == 1 ? true : false;
         if (!isUnlocked)
         {
-            Darken(80);
+            Darken(65);
         }
     }
 
     public void OnMouseEnter()
     {
-        if (cWL.getIsSelected() && isUnlocked)
+        if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
             obj_selection.SetActive(true);
         }
@@ -35,7 +35,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (cWL.getIsSelected() && isUnlocked)
+        if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
             obj_selection.SetActive(false);
         }
@@ -43,7 +43,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (cWL.getIsSelected() && isUnlocked)
+        if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
             //selected = true;
             //var mp = mapManager.GetComponent<MapManager>();

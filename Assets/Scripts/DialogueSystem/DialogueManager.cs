@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
 		Debug.Log("Set IsOpen --> True");
 		animator.SetBool("IsOpen", true);
 		Debug.Log("IsOpen --> " + animator.GetBool("IsOpen"));
-
+		GameManager.instance.PauseGame();
 
 		sentences.Clear();
 
@@ -65,6 +65,7 @@ public class DialogueManager : MonoBehaviour
 	void EndDialogue()
 	{
 		animator.SetBool("IsOpen", false);
+		GameManager.instance.ResumenGame();
 	}
 
 }
