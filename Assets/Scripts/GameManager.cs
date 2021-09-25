@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 
     // IMPORTANT DATA
     public string language;
-    public AudioSource audiosrc;
+    public AudioSource music;
+    public UnityEngine.Audio.AudioMixer mixer;
 
     public Scene lastScene;
 
@@ -50,8 +51,8 @@ public class GameManager : MonoBehaviour
         // CREATE A NEW SAVE DATA
         SaveData();
 
-        // LOAD THE GAME
-        GameManager.instance.LoadScene("Map");
+        // LOAD THE INITIAL PUZZLE
+        GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
     }
 
     public void PauseGame()
@@ -82,7 +83,7 @@ public class GameManager : MonoBehaviour
         lastScene = SceneManager.GetActiveScene();
         if (nameLevel.Equals("Ending") || nameLevel.Equals("Credits"))
         {
-            audiosrc.Stop();
+            //music.Stop();
         }
 
         SceneManager.LoadScene(nameLevel);
@@ -117,5 +118,15 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("puzzle_1.2", 0);
         PlayerPrefs.SetInt("puzzle_1.3", 0);
         PlayerPrefs.SetInt("puzzle_1.4", 0);
+    }
+
+    public void setMusicControl(float value)
+    {
+        mixer.SetFloat("Master", Mathf.Log10(value) * 20); 
+    }
+
+    public void setEffecsControl(float value)
+    {
+        mixer.SetFloat("SFXVol", Mathf.Log10(value) * 20);
     }
 }

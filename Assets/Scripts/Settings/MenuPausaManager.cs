@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuPausaManager : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class MenuPausaManager : MonoBehaviour
     [Space(10)]
     [Header("UI Buttons")] 
     public GameObject buttonOpenPausaPanel;
+
+    [Space(10)]
+    [Header("UI Sliders")]
+    public GameObject sliderMusic;
+    public GameObject sliderEffects;
+
 
     private void Start()
     {
@@ -50,5 +57,15 @@ public class MenuPausaManager : MonoBehaviour
         GameManager.instance.SaveData();
         GameManager.instance.ResumenGame();
         GameManager.instance.LoadScene("MainMenu");
+    }
+
+    public void UI_ChangeMusicControl ()
+    {
+        GameManager.instance.setMusicControl(sliderMusic.GetComponent<Slider>().value);
+    }
+
+    public void UI_ChangeEffectsControl()
+    {
+        GameManager.instance.setEffecsControl(sliderEffects.GetComponent<Slider>().value);
     }
 }
