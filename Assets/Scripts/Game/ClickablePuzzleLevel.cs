@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ClickablePuzzleLevel : MonoBehaviour
 {
-    //public GameObject obj_selection;
+    public GameObject obj_selection;
     public GameObject obj_material;
-    public string folderPath = "Scenes/Puzzles/Puzzle_";
+    public string puzzleLevel;
     public string puzzleNumber;
     public bool isUnlocked;
 
+    private string folderPath = "Scenes/Puzzles/";
     private ClickableWorlLevel cWL;
     private Renderer objTextureRender;
     private Vector3 initialSize;
@@ -19,7 +20,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
         initialSize = this.gameObject.transform.localScale;
         objTextureRender = obj_material.GetComponent<Renderer>();
         cWL = this.gameObject.GetComponentInParent<ClickableWorlLevel>();
-        //obj_selection.SetActive(false);
+        obj_selection.SetActive(false);
         isUnlocked = PlayerPrefs.GetInt("puzzle_" + puzzleNumber) == 1 ? true : false;
         if (!isUnlocked)
         {
@@ -31,8 +32,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
     {
         if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
-            //obj_selection.SetActive(true);
-            this.gameObject.transform.localScale = new Vector3(initialSize.x + 5, initialSize.y + 5, initialSize.z + 5);
+            obj_selection.SetActive(true);
         }
     }
 
@@ -40,8 +40,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
     {
         if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
-            //obj_selection.SetActive(false);ç
-            this.gameObject.transform.localScale = initialSize;
+            obj_selection.SetActive(false);
         }
     }
 
@@ -53,7 +52,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
             //var mp = mapManager.GetComponent<MapManager>();
             //mp.goToLevel(levelNumber);
             Debug.Log("Al puzzle " + folderPath + puzzleNumber + "!!");
-            GameManager.instance.LoadScene(folderPath + puzzleNumber);
+            GameManager.instance.LoadScene(folderPath + "Level_" + puzzleLevel + "/Puzzle_" + puzzleNumber);
         }
     }
     public void Darken(float percent)
