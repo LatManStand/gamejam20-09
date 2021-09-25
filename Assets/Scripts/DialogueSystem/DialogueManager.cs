@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
 	public Dialogue dialogue;
 	public Animator animator;
 
-	public float velocity = 1.0f;
+	public float velocity = 0.15f;
 
 	private Queue<string> sentences;
 
@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return new WaitForSeconds(velocity * Time.deltaTime);
+			yield return new WaitForSeconds(velocity);
 		}
 	}
 

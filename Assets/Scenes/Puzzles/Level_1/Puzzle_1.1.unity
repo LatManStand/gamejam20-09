@@ -233,6 +233,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 113885654}
     m_Modifications:
     - target: {fileID: 4741555317864880812, guid: 1da7fcd9586791b42bdebfd8c46f93a2, type: 3}
+      propertyPath: velocity
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741555317864880812, guid: 1da7fcd9586791b42bdebfd8c46f93a2, type: 3}
       propertyPath: dialogue.sentences.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -913,7 +917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1790545336
 RectTransform:
   m_ObjectHideFlags: 0

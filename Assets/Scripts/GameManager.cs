@@ -55,6 +55,16 @@ public class GameManager : MonoBehaviour
         GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
     }
 
+    public void ContinueGame()
+    {
+        // GET THE DATA
+        setMusicControl(PlayerPrefs.GetFloat("musicVol"));
+        setEffecsControl(PlayerPrefs.GetFloat("SFXVol"));
+
+        // LOAD THE INITIAL PUZZLE
+        GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
+    }
+
     public void PauseGame()
     {
         //Any related with pause game
@@ -113,6 +123,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("new_game", 1);
         Debug.Log(PlayerPrefs.GetInt("new_game"));
+        PlayerPrefs.SetFloat("musicVol", -0.03299108f);
+        PlayerPrefs.SetFloat("SFXVol", -0.03299108f);
 
         PlayerPrefs.SetInt("puzzle_1.1", 1);
         PlayerPrefs.SetInt("puzzle_1.2", 0);
@@ -122,11 +134,25 @@ public class GameManager : MonoBehaviour
 
     public void setMusicControl(float value)
     {
-        mixer.SetFloat("Master", Mathf.Log10(value) * 20); 
+        if(value == 0)
+        {
+            return;
+        }
+
+        var newVolumen = Mathf.Log10(value) * 20;
+        mixer.SetFloat("musicVol", newVolumen);
+        PlayerPrefs.SetFloat("musicVol", newVolumen);
     }
 
     public void setEffecsControl(float value)
     {
-        mixer.SetFloat("SFXVol", Mathf.Log10(value) * 20);
+        if (value == 0)
+        {
+            return;
+        }
+
+        var newVolumen = Mathf.Log10(value) * 20;
+        mixer.SetFloat("SFXVol", newVolumen);
+        PlayerPrefs.SetFloat("SFXVol", newVolumen);
     }
 }
