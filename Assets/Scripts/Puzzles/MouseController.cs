@@ -37,6 +37,7 @@ public class MouseController : MonoBehaviour
             currentCuerda = Instantiate(cuerdaPrefab).GetComponent<CuerdaPuente>();
             currentCuerda.StartPoint = mouseOver.transform;
             currentCuerda.EndPoint = MouseToWorld.instance.transform;
+            mouseOver.transform.root.GetComponent<Pieza>().cuerda = currentCuerda.tiraCuerdas;
         }
         else if (Input.GetMouseButtonUp(0) && mouseOver != null && clickedChinche != null && mouseOver != clickedChinche)
         {
@@ -44,6 +45,7 @@ public class MouseController : MonoBehaviour
             cuerdas.Add(currentCuerda);
             clickedChinche.GetComponent<Chincheta>().estaLibre = false;
             mouseOver.GetComponent<Chincheta>().estaLibre = false;
+            mouseOver.transform.root.GetComponent<Pieza>().cuerda = currentCuerda.tiraCuerdas;
             clickedChinche = null;
             currentCuerda = null;
             mouseOver = null;

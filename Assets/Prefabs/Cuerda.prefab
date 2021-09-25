@@ -144,8 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPoint: {fileID: 2610252216086158175}
-  EndPoint: {fileID: 0}
+  EndPoint: {fileID: 2610252216086158175}
   segmentLength: 35
+  lineWidth: 0.25
+  tirando: 0
+  tiraCuerdas: {fileID: 0}
 --- !u!1 &5718127096380768650
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +160,8 @@ GameObject:
   - component: {fileID: 5370838799775593886}
   - component: {fileID: 4931455692002088295}
   - component: {fileID: 4685105994550371697}
-  m_Layer: 0
+  - component: {fileID: 895761038259693840}
+  m_Layer: 8
   m_Name: TiraCuerdas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,3 +246,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cuerda: {fileID: 0}
+  clicked: 0
+  speed: 0.1
+  distanceMult: 0.2
+--- !u!58 &895761038259693840
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5718127096380768650}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3

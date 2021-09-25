@@ -44,13 +44,26 @@ public class Tablon : MonoBehaviour
         line.SetPosition(0, aux1);
         line.SetPosition(1, aux2);
         chincheta.position = Vector3.Lerp(startPoint.position, endPoint.position, 0.5f);
-        chincheta.position -= Vector3.forward * 2;
+        chincheta.position -= Vector3.forward * 1.01f;
 
     }
 
     private void OnDestroy()
     {
         startPoint.parent.SetParent(null);
-        endPoint.parent.SetParent(null);
+        startPoint.parent.GetComponent<Collider2D>().enabled = true;
+        if (endPoint != null)
+        {
+            if (endPoint.parent != null)
+            {
+                endPoint.parent.SetParent(null);
+                endPoint.parent.GetComponent<Collider2D>().enabled = true;
+
+            }
+            else
+            {
+                endPoint.SetParent(null);
+            }
+        }
     }
 }

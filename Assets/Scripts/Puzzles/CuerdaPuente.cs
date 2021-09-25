@@ -14,13 +14,18 @@ public class CuerdaPuente : MonoBehaviour
     public int segmentLength = 35;
     [HideInInspector]
     public List<RopeSegment> ropeSegments = new List<RopeSegment>();
-    private float lineWidth = 0.1f;
+    public float lineWidth = 0.1f;
+
+    public bool tirando;
+
+    public TiraCuerdas tiraCuerdas;
 
     // Use this for initialization
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         Vector3 ropeStartPoint = StartPoint.position - Vector3.forward * 3;
+        tiraCuerdas = transform.GetChild(0).GetComponent<TiraCuerdas>();
 
         for (int i = 0; i < segmentLength; i++)
         {
@@ -44,15 +49,25 @@ public class CuerdaPuente : MonoBehaviour
 
     public IEnumerator Recalculate()
     {
-        yield return new WaitForSeconds(0.5f);
-        int desiredSegmentLength = Mathf.CeilToInt(Vector3.Distance(StartPoint.position, EndPoint.position) / ropeSegLen * 1.15f);
-
-        for (int i = segmentLength - 1; i > desiredSegmentLength; i--)
+        while (true)
         {
-            ropeSegments.RemoveAt(i);
-            segmentLength--;
+            int desiredSegmentLength = Mathf.CeilToInt(Vector2.Distance(StartPoint.position, EndPoint.position) / ropeSegLen * 1.15f + 5);
 
-            yield return new WaitForSeconds(0.1f);
+            if (desiredSegmentLength < segmentLength * 0.9f)
+            {
+                ropeSegments.RemoveAt(segmentLength - 1);
+                segmentLength--;
+
+
+            }
+            else if (desiredSegmentLength > segmentLength * 1.1f)
+            {
+                ropeSegments.Add(new RopeSegment(ropeSegments[segmentLength - 1].posNow));
+                segmentLength++;
+
+            }
+
+            yield return null;
         }
     }
 
@@ -63,12 +78,16 @@ public class CuerdaPuente : MonoBehaviour
 
         for (int i = 1; i < segmentLength; i++)
         {
-            RopeSegment firstSegment = ropeSegments[i];
-            Vector3 velocity = firstSegment.posNow - firstSegment.posOld;
-            firstSegment.posOld = firstSegment.posNow;
-            firstSegment.posNow += velocity;
-            firstSegment.posNow += forceGravity * Time.fixedDeltaTime;
-            ropeSegments[i] = firstSegment;
+            if (!(i == segmentLength / 2 && tirando))
+            {
+
+                RopeSegment firstSegment = ropeSegments[i];
+                Vector3 velocity = firstSegment.posNow - firstSegment.posOld;
+                firstSegment.posOld = firstSegment.posNow;
+                firstSegment.posNow += velocity;
+                firstSegment.posNow += forceGravity * Time.fixedDeltaTime;
+                ropeSegments[i] = firstSegment;
+            }
         }
 
         //CONSTRAINTS
@@ -97,34 +116,37 @@ public class CuerdaPuente : MonoBehaviour
 
         for (int i = 0; i < segmentLength - 1; i++)
         {
-            RopeSegment firstSeg = ropeSegments[i];
-            RopeSegment secondSeg = ropeSegments[i + 1];
+            if (!((i == segmentLength / 2 - 1 || i == segmentLength / 2) && tirando))
+            {
+                RopeSegment firstSeg = ropeSegments[i];
+                RopeSegment secondSeg = ropeSegments[i + 1];
 
-            float dist = (firstSeg.posNow - secondSeg.posNow).magnitude;
-            float error = Mathf.Abs(dist - ropeSegLen);
-            Vector2 changeDir = Vector2.zero;
+                float dist = (firstSeg.posNow - secondSeg.posNow).magnitude;
+                float error = Mathf.Abs(dist - ropeSegLen);
+                Vector2 changeDir = Vector2.zero;
 
-            if (dist > ropeSegLen)
-            {
-                changeDir = (firstSeg.posNow - secondSeg.posNow).normalized;
-            }
-            else if (dist < ropeSegLen)
-            {
-                changeDir = (secondSeg.posNow - firstSeg.posNow).normalized;
-            }
+                if (dist > ropeSegLen)
+                {
+                    changeDir = (firstSeg.posNow - secondSeg.posNow).normalized;
+                }
+                else if (dist < ropeSegLen)
+                {
+                    changeDir = (secondSeg.posNow - firstSeg.posNow).normalized;
+                }
 
-            Vector3 changeAmount = changeDir * error;
-            if (i != 0)
-            {
-                firstSeg.posNow -= changeAmount * 0.5f;
-                ropeSegments[i] = firstSeg;
-                secondSeg.posNow += changeAmount * 0.5f;
-                ropeSegments[i + 1] = secondSeg;
-            }
-            else
-            {
-                secondSeg.posNow += changeAmount;
-                ropeSegments[i + 1] = secondSeg;
+                Vector3 changeAmount = changeDir * error;
+                if (i != 0)
+                {
+                    firstSeg.posNow -= changeAmount * 0.5f;
+                    ropeSegments[i] = firstSeg;
+                    secondSeg.posNow += changeAmount * 0.5f;
+                    ropeSegments[i + 1] = secondSeg;
+                }
+                else
+                {
+                    secondSeg.posNow += changeAmount;
+                    ropeSegments[i + 1] = secondSeg;
+                }
             }
         }
     }
