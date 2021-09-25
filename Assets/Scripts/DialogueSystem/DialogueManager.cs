@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
 	public Dialogue dialogue;
 	public Animator animator;
 
-	public float velocity = 1.0f;
+	public float velocity = 0.15f;
 
 	private Queue<string> sentences;
 
@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
 		Debug.Log("Set IsOpen --> True");
 		animator.SetBool("IsOpen", true);
 		Debug.Log("IsOpen --> " + animator.GetBool("IsOpen"));
-
+		GameManager.instance.PauseGame();
 
 		sentences.Clear();
 
@@ -58,13 +58,14 @@ public class DialogueManager : MonoBehaviour
 		foreach (char letter in sentence.ToCharArray())
 		{
 			dialogueText.text += letter;
-			yield return new WaitForSeconds(velocity * Time.deltaTime);
+			yield return new WaitForSeconds(velocity);
 		}
 	}
 
 	void EndDialogue()
 	{
 		animator.SetBool("IsOpen", false);
+		GameManager.instance.ResumenGame();
 	}
 
 }

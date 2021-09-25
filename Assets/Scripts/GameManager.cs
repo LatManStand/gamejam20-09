@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
 
     // IMPORTANT DATA
     public string language;
-    public AudioSource audiosrc;
+    public AudioSource music;
+    public UnityEngine.Audio.AudioMixer mixer;
 
     public Scene lastScene;
+
+    private bool isGamePaused;
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isGamePaused = false;
     }
 
     private void OnApplicationQuit()
@@ -47,8 +51,35 @@ public class GameManager : MonoBehaviour
         // CREATE A NEW SAVE DATA
         SaveData();
 
-        // LOAD THE GAME
-        GameManager.instance.LoadScene("Map");
+        // LOAD THE INITIAL PUZZLE
+        GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
+    }
+
+    public void ContinueGame()
+    {
+        // GET THE DATA
+        setMusicControl(PlayerPrefs.GetFloat("musicVol"));
+        setEffecsControl(PlayerPrefs.GetFloat("SFXVol"));
+
+        // LOAD THE INITIAL PUZZLE
+        GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
+    }
+
+    public void PauseGame()
+    {
+        //Any related with pause game
+        isGamePaused = true;
+    }
+
+    public void ResumenGame()
+    {
+        //Any related with pause game
+        isGamePaused = false;
+    }
+
+    public bool isPause ()
+    {
+        return isGamePaused;
     }
 
     public void QuitGame()
@@ -62,7 +93,7 @@ public class GameManager : MonoBehaviour
         lastScene = SceneManager.GetActiveScene();
         if (nameLevel.Equals("Ending") || nameLevel.Equals("Credits"))
         {
-            audiosrc.Stop();
+            //music.Stop();
         }
 
         SceneManager.LoadScene(nameLevel);
@@ -84,7 +115,7 @@ public class GameManager : MonoBehaviour
         // SAVE IMPORTANT DATA
         //PlayerPrefs.SetInt("helpedWolf" + slot, helpedWolf);
 
-        //PlayerPrefs.Save();
+        PlayerPrefs.Save();
     }
 
 
@@ -92,12 +123,36 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("new_game", 1);
         Debug.Log(PlayerPrefs.GetInt("new_game"));
+        PlayerPrefs.SetFloat("musicVol", -0.03299108f);
+        PlayerPrefs.SetFloat("SFXVol", -0.03299108f);
 
         PlayerPrefs.SetInt("puzzle_1.1", 1);
         PlayerPrefs.SetInt("puzzle_1.2", 0);
         PlayerPrefs.SetInt("puzzle_1.3", 0);
         PlayerPrefs.SetInt("puzzle_1.4", 0);
+    }
 
-        PlayerPrefs.Save();
+    public void setMusicControl(float value)
+    {
+        if(value == 0)
+        {
+            return;
+        }
+
+        var newVolumen = Mathf.Log10(value) * 20;
+        mixer.SetFloat("musicVol", newVolumen);
+        PlayerPrefs.SetFloat("musicVol", newVolumen);
+    }
+
+    public void setEffecsControl(float value)
+    {
+        if (value == 0)
+        {
+            return;
+        }
+
+        var newVolumen = Mathf.Log10(value) * 20;
+        mixer.SetFloat("SFXVol", newVolumen);
+        PlayerPrefs.SetFloat("SFXVol", newVolumen);
     }
 }
