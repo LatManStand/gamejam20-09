@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PuzzleManager : MonoBehaviour
     public int piezasColocadas;
 
     public string nivel;
+    [HideInInspector]
     public string puzzle;
 
     private void Awake()
@@ -16,6 +18,7 @@ public class PuzzleManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            puzzle = SceneManager.GetActiveScene().name;
         }
         else if (instance != this)
         {
