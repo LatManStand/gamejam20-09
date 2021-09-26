@@ -25,14 +25,14 @@ public class ClickableWorlLevel : MonoBehaviour
 
     public void GoBackToMenu ()
     {
-        var mp = mapManager.GetComponent<MapManager>();
+        this.gameObject.GetComponent<ClickableWorlLevel>().enabled = true;
         obj_selection.SetActive(false);
         selected = false;
     }
 
     public void OnMouseEnter()
     {
-        if(!GameManager.instance.isPause() && !selected)
+        if(!GameManager.instance.isPause() && !mapManager.GetComponent<MapManager>().starTranstion && !selected)
         {
             obj_selection.SetActive(true);
         }
@@ -40,7 +40,7 @@ public class ClickableWorlLevel : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (!GameManager.instance.isPause() && !selected)
+        if (!GameManager.instance.isPause() && !mapManager.GetComponent<MapManager>().starTranstion && !selected)
         {
             obj_selection.SetActive(false);
         }
@@ -48,7 +48,7 @@ public class ClickableWorlLevel : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!GameManager.instance.isPause() && !selected)
+        if (!GameManager.instance.isPause() && !mapManager.GetComponent<MapManager>().starTranstion && !selected)
         {
             selected = true;
             var mp = mapManager.GetComponent<MapManager>();
