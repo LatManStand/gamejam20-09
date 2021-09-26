@@ -17,15 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI_Levels/Credits.unity
     guid: 1d3a6ef9ef63f8949958b5207acfa597
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Puzzles/Level_2/Puzzle_2.1.unity
     guid: c30c8a7224c580348866bea0fcf281c6
