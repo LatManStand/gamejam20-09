@@ -26,7 +26,7 @@ public class ClickableWorlLevel : MonoBehaviour
     public void GoBackToMenu ()
     {
         var mp = mapManager.GetComponent<MapManager>();
-        obj_selection.SetActive(true);
+        obj_selection.SetActive(false);
         selected = false;
     }
 

@@ -73,16 +73,16 @@ public class MapManager : MonoBehaviour
         backButton.SetActive(true);
         switch (levelNumber)
         {
-            case 0:
+            case 1:
                 transion_level_1.SetActive(true);
                 break;
-            case 1:
+            case 2:
                 transion_level_2.SetActive(true);
                 break;
-            case 2:
+            case 3:
                 transion_level_3.SetActive(true);
                 break;
-            case 3:
+            case 4:
                 transion_level_4.SetActive(true);
                 break;
         }
