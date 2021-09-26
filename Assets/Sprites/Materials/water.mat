@@ -21,11 +21,11 @@ Material:
     m_TexEnvs:
     - _DisTex:
         m_Texture: {fileID: 2800000, guid: b4a982d2875c1c6428b01fed6119ce96, type: 3}
-        m_Scale: {x: 16, y: 16}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5f93b81d93de2c745ad034c4a3a93190, type: 3}
-        m_Scale: {x: 16, y: 16}
+        m_Texture: {fileID: 2800000, guid: bf234ca4ef6171e4eb75f8a142331199, type: 3}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DepthValue: 1

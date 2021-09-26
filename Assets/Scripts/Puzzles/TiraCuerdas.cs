@@ -62,7 +62,7 @@ public class TiraCuerdas : MonoBehaviour
         if (clicked)
         {
             CuerdaPuente.RopeSegment aux = cuerda.ropeSegments[cuerda.segmentLength / 2];
-            Vector3 proj = Vector3.Project(MouseToWorld.instance.transform.position, Vector2.Perpendicular(cuerda.EndPoint.position - cuerda.StartPoint.position));
+            Vector3 proj = (cuerda.EndPoint.position + cuerda.StartPoint.position) / 2f + Vector3.Project(MouseToWorld.instance.transform.position, Vector3.Cross(cuerda.EndPoint.position - cuerda.StartPoint.position, Vector3.forward));
             //+ ((cuerda.EndPoint.position - cuerda.StartPoint.position) / 2);
             aux.posNow = proj;
             aux.posOld = proj;

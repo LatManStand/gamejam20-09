@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2610252216086158175}
   - component: {fileID: 2610252216086158174}
   - component: {fileID: -1102412403398854957}
-  - component: {fileID: 4510447437998601084}
+  - component: {fileID: 4133408671622579821}
   m_Layer: 8
   m_Name: Tablon
   m_TagString: Untagged
@@ -150,7 +150,7 @@ MonoBehaviour:
   chinchetaStart: {r: 0, g: 0, b: 0, a: 0}
   chinchetaEnd: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0.3
---- !u!114 &4510447437998601084
+--- !u!114 &4133408671622579821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,8 +163,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cuerda: {fileID: 0}
-  isColliding: 0
-  lastCollider: {fileID: 0}
+  lastMovement: {x: 0, y: 0}
+  objetivo: {fileID: 0}
+  puntuo: 0
+  esTablon: 1
 --- !u!1001 &5680211852964014401
 PrefabInstance:
   m_ObjectHideFlags: 0

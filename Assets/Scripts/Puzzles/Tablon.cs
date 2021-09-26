@@ -53,10 +53,12 @@ public class Tablon : MonoBehaviour
     public void Update()
     {
         Vector3 aux1 = startPoint.position;
+        aux1.z = -3;
         Vector3 aux2 = endPoint.position;
+        aux2.z = -3;
         line.SetPosition(0, aux1);
         line.SetPosition(1, aux2);
-        Vector3 pos = Vector3.Lerp(startPoint.position, endPoint.position, 0.5f);
+        Vector3 pos = Vector3.Lerp(aux1, aux2, 0.5f);
         Vector3 distance = pos - transform.position;
         transform.position += distance;
         foreach (Transform child in transform)

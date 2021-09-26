@@ -11,6 +11,9 @@ public class Pieza : MonoBehaviour
     public Transform objetivo;
     public bool puntuo;
 
+    public bool esTablon;
+
+
     private void Awake()
     {
         PuzzleManager.instance.piezas++;
@@ -40,20 +43,24 @@ public class Pieza : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Abs(transform.position.x - objetivo.position.x) < 1f && Mathf.Abs(transform.position.y - objetivo.position.y) < 1f)
+        if (!esTablon)
         {
-            if (!puntuo)
+
+            if (Mathf.Abs(transform.position.x - objetivo.position.x) < 1f && Mathf.Abs(transform.position.y - objetivo.position.y) < 1f)
             {
-                puntuo = true;
-                PuzzleManager.instance.piezasColocadas++;
+                if (!puntuo)
+                {
+                    puntuo = true;
+                    PuzzleManager.instance.piezasColocadas++;
+                }
             }
-        }
-        else
-        {
-            if (puntuo)
+            else
             {
-                puntuo = false;
-                PuzzleManager.instance.piezasColocadas--;
+                if (puntuo)
+                {
+                    puntuo = false;
+                    PuzzleManager.instance.piezasColocadas--;
+                }
             }
         }
     }

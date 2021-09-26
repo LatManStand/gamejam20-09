@@ -4,6 +4,8 @@ public class MouseToWorld : MonoBehaviour
 {
     public static MouseToWorld instance;
 
+    public Vector3 oldPosition;
+
     private void Awake()
     {
         if (instance == null)
@@ -23,5 +25,11 @@ public class MouseToWorld : MonoBehaviour
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseWorldPosition);
         mouseWorldPosition.z = 0f;
         transform.position = mouseWorldPosition;
+        if (oldPosition != transform.position)
+        {
+            transform.up = Vector3.Lerp(transform.up, transform.position - oldPosition, 0.3f);
+            //transform.up = transform.position - oldPosition;
+        }
+        oldPosition = mouseWorldPosition;
     }
 }
