@@ -6,9 +6,13 @@ public class Tablon : MonoBehaviour
 {
     public Transform startPoint;
     public Transform endPoint;
-    public LineRenderer line;
+    private LineRenderer line;
 
     public Transform chincheta;
+
+    public Color chinchetaStart;
+    public Color chinchetaEnd;
+    public float alpha;
 
     private void Awake()
     {
@@ -22,43 +26,59 @@ public class Tablon : MonoBehaviour
         startPoint = start;
         endPoint = end;
         startPoint.root.SetParent(transform);
-        if (end != MouseToWorld.instance.transform)
+        chinchetaStart = startPoint.GetComponent<SpriteRenderer>().color;
+        chinchetaStart.a = alpha;
+        startPoint.GetComponent<SpriteRenderer>().color = chinchetaStart;
+        if (end != MouseToWorld.instance.transform && end != null)
         {
             endPoint.root.SetParent(transform);
+            chinchetaEnd = startPoint.GetComponent<SpriteRenderer>().color;
+            chinchetaEnd.a = alpha;
+            startPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
         }
     }
 
     public void SetEnd(Transform end)
     {
         endPoint = end;
-        if (end != MouseToWorld.instance.transform)
+        if (end != MouseToWorld.instance.transform && end != null)
         {
             endPoint.root.SetParent(transform);
+            chinchetaEnd = endPoint.GetComponent<SpriteRenderer>().color;
+            chinchetaEnd.a = alpha;
+            endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
         }
     }
 
     public void Update()
     {
-        Vector3 aux1 = startPoint.position - Vector3.forward;
-        Vector3 aux2 = endPoint.position - Vector3.forward;
+        Vector3 aux1 = startPoint.position;
+        Vector3 aux2 = endPoint.position;
         line.SetPosition(0, aux1);
         line.SetPosition(1, aux2);
-        chincheta.position = Vector3.Lerp(startPoint.position, endPoint.position, 0.5f);
-        chincheta.position -= Vector3.forward * 1.01f;
+        Vector3 pos = Vector3.Lerp(startPoint.position, endPoint.position, 0.5f);
+        Vector3 distance = pos - transform.position;
+        transform.position += distance;
+        foreach (Transform child in transform)
+        {
+            child.position -= distance;
+        }
 
+        chincheta.position = pos;
     }
 
     private void OnDestroy()
     {
+        chinchetaStart.a = 1.0f;
+        startPoint.GetComponent<SpriteRenderer>().color = chinchetaStart;
         startPoint.parent.SetParent(null);
-        startPoint.parent.GetComponent<Collider2D>().enabled = true;
         if (endPoint != null)
         {
+            chinchetaEnd.a = 1.0f;
+            endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
             if (endPoint.parent != null)
             {
                 endPoint.parent.SetParent(null);
-                endPoint.parent.GetComponent<Collider2D>().enabled = true;
-
             }
             else
             {

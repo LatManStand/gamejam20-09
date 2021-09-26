@@ -145,8 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartPoint: {fileID: 2610252216086158175}
   EndPoint: {fileID: 2610252216086158175}
-  segmentLength: 35
-  lineWidth: 0.25
+  ropeSegLen: 0.2
+  segmentLength: 2
+  lineWidth: 0.5
   tirando: 0
   tiraCuerdas: {fileID: 0}
 --- !u!1 &5718127096380768650
@@ -248,7 +249,7 @@ MonoBehaviour:
   cuerda: {fileID: 0}
   clicked: 0
   speed: 0.1
-  distanceMult: 0.2
+  distanceMult: 0.05
 --- !u!58 &895761038259693840
 CircleCollider2D:
   m_ObjectHideFlags: 0

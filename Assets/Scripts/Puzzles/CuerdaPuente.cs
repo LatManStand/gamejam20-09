@@ -10,7 +10,9 @@ public class CuerdaPuente : MonoBehaviour
     public Transform EndPoint;
 
     private LineRenderer lineRenderer;
-    private float ropeSegLen = 0.25f;
+    
+    public float ropeSegLen = 0.25f;
+    [HideInInspector]
     public int segmentLength = 35;
     [HideInInspector]
     public List<RopeSegment> ropeSegments = new List<RopeSegment>();
@@ -51,7 +53,7 @@ public class CuerdaPuente : MonoBehaviour
     {
         while (true)
         {
-            int desiredSegmentLength = Mathf.CeilToInt(Vector2.Distance(StartPoint.position, EndPoint.position) / ropeSegLen * 1.15f + 5);
+            int desiredSegmentLength = Mathf.CeilToInt(Vector2.Distance(StartPoint.position, EndPoint.position) / ropeSegLen * 1.05f + 5);
 
             if (desiredSegmentLength < segmentLength * 0.9f)
             {

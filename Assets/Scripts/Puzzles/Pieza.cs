@@ -10,28 +10,8 @@ public class Pieza : MonoBehaviour
     public GameObject lastCollider;
 
 
-
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Pieza"))
-        {
-            isColliding = true;
-            lastCollider = collision.collider.gameObject;
-            cuerda.StopCoroutine(nameof(cuerda.Tirar));
-            if(cuerda.cuerda.StartPoint == this)
-            {
-                transform.Translate((cuerda.cuerda.StartPoint.position - cuerda.cuerda.EndPoint.position).normalized * 0.1f);
-            } else
-            {
-                transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
-            }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
         if (collision.collider.CompareTag("Pieza"))
         {
             isColliding = true;
@@ -39,19 +19,21 @@ public class Pieza : MonoBehaviour
             if (cuerda != null)
             {
                 cuerda.StopCoroutine(nameof(cuerda.Tirar));
+
+                if (cuerda.cuerda.StartPoint == this)
+                {
+                    transform.Translate((cuerda.cuerda.StartPoint.position - cuerda.cuerda.EndPoint.position).normalized * 0.1f);
+                }
+                else
+                {
+                    transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
+                }
             }
 
-            if (cuerda.cuerda.StartPoint == this)
-            {
-                transform.Translate((cuerda.cuerda.StartPoint.position - cuerda.cuerda.EndPoint.position).normalized * 0.1f);
-            }
-            else
-            {
-                transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
-            }
         }
     }
-    
+
+
     private void OnCollisionExit(Collision collision)
     {
         if (lastCollider == collision.collider)
@@ -60,12 +42,5 @@ public class Pieza : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (lastCollider == collision.collider)
-        {
-            isColliding = false;
-        }
-    }
-    
+
 }
