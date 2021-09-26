@@ -20,12 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzles/Level_1/Puzzle_1.1.unity
     guid: 9dae52d5bd8257045a378218e4a9f665
-  - enabled: 1
-    path: Assets/Scenes/Puzzles/Level_1/Puzzle_1.2.unity
-    guid: c9d48d63b50071a41ba68d6ee9bf4c1e
-  - enabled: 1
-    path: Assets/Scenes/Puzzles/Level_1/Puzzle_1.3.unity
-    guid: 9514fd3fd2d96954a9933e2350149206
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Puzzles/Level_2/Puzzle_2.1.unity
     guid: c30c8a7224c580348866bea0fcf281c6
