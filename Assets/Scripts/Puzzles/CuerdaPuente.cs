@@ -26,7 +26,7 @@ public class CuerdaPuente : MonoBehaviour
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        Vector3 ropeStartPoint = StartPoint.position - Vector3.forward * 3;
+        Vector3 ropeStartPoint = StartPoint.position - Vector3.forward * 3.1f;
         tiraCuerdas = transform.GetChild(0).GetComponent<TiraCuerdas>();
 
         for (int i = 0; i < segmentLength; i++)
@@ -104,7 +104,7 @@ public class CuerdaPuente : MonoBehaviour
         //Constrant to First Point 
         RopeSegment firstSegment = ropeSegments[0];
         Vector3 aux = StartPoint.position;
-        aux.z = -3;
+        aux.z = -3.1f;
         firstSegment.posNow = aux;
         ropeSegments[0] = firstSegment;
 
@@ -112,7 +112,7 @@ public class CuerdaPuente : MonoBehaviour
         //Constrant to Second Point 
         RopeSegment endSegment = ropeSegments[ropeSegments.Count - 1];
         aux = EndPoint.position;
-        aux.z = -3;
+        aux.z = -3.1f;
         endSegment.posNow = aux;
         ropeSegments[ropeSegments.Count - 1] = endSegment;
 
