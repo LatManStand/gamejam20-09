@@ -30,13 +30,15 @@ public class TiraCuerdas : MonoBehaviour
             cuerda.tirando = false;
         }
         */
-        if (clicked && Vector3.Distance(cuerda.ropeSegments[cuerda.segmentLength / 2].posNow, cuerda.ropeSegments[cuerda.segmentLength / 2 - 2].posNow) > 
-            Vector3.Distance(cuerda.EndPoint.position, cuerda.StartPoint.position) * distanceMult 
-            && !cuerda.tirando 
-            && cuerda.StartPoint.GetComponentInParent<Pieza>().lastCollider != cuerda.EndPoint.GetComponentInParent<Pieza>().gameObject
-            && cuerda.EndPoint.GetComponentInParent<Pieza>().lastCollider != cuerda.StartPoint.GetComponentInParent<Pieza>().gameObject)
+        if (clicked && Vector3.Distance(cuerda.ropeSegments[cuerda.segmentLength / 2].posNow, cuerda.ropeSegments[cuerda.segmentLength / 2 - 2].posNow) >
+            Vector3.Distance(cuerda.EndPoint.position, cuerda.StartPoint.position) * distanceMult
+            && !cuerda.tirando
+            && (Vector2.Dot(cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement, cuerda.EndPoint.position - cuerda.StartPoint.position) <= 0.0f || cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero)
+            && (Vector2.Dot(cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement, cuerda.StartPoint.position - cuerda.EndPoint.position) <= 0.0f || cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero))
         {
             cuerda.tirando = true;
+            cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.EndPoint.position - cuerda.StartPoint.position;
+            cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.StartPoint.position - cuerda.EndPoint.position;
             //clicked = false;
             StartCoroutine(nameof(Tirar));
 

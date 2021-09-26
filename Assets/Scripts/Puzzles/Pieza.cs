@@ -6,16 +6,21 @@ public class Pieza : MonoBehaviour
 {
     public TiraCuerdas cuerda;
 
-    public bool isColliding;
-    public GameObject lastCollider;
+    public Vector2 lastMovement;
+
+    public Transform objetivo;
+    public bool puntuo;
+
+    private void Awake()
+    {
+        PuzzleManager.instance.piezas++;
+    }
 
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Pieza"))
         {
-            isColliding = true;
-            lastCollider = collision.collider.gameObject;
             if (cuerda != null)
             {
                 cuerda.StopCoroutine(nameof(cuerda.Tirar));
@@ -33,14 +38,24 @@ public class Pieza : MonoBehaviour
         }
     }
 
-
-    private void OnCollisionExit(Collision collision)
+    private void Update()
     {
-        if (lastCollider == collision.collider)
+        if (Mathf.Abs(transform.position.x - objetivo.position.x) < 1f && Mathf.Abs(transform.position.y - objetivo.position.y) < 1f)
         {
-            isColliding = false;
+            if (!puntuo)
+            {
+                puntuo = true;
+                PuzzleManager.instance.piezasColocadas++;
+            }
+        }
+        else
+        {
+            if (puntuo)
+            {
+                puntuo = false;
+                PuzzleManager.instance.piezasColocadas--;
+            }
         }
     }
-
 
 }
