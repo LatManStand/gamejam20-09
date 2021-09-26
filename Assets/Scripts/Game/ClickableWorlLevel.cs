@@ -11,7 +11,6 @@ public class ClickableWorlLevel : MonoBehaviour
 
     private GameObject obj;
 
-
     private void Start()
     {
         obj = this.gameObject;
@@ -22,6 +21,13 @@ public class ClickableWorlLevel : MonoBehaviour
     public bool getIsSelected()
     {
         return selected;
+    }
+
+    public void GoBackToMenu ()
+    {
+        var mp = mapManager.GetComponent<MapManager>();
+        obj_selection.SetActive(true);
+        selected = false;
     }
 
     public void OnMouseEnter()
