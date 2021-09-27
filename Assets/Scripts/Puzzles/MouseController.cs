@@ -90,14 +90,6 @@ public class MouseController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl)) // Input provisional
         {
-            foreach (Tablon tablon in tablones)
-            {
-                tablon.Unlink();
-                tablon.startPoint.GetComponent<Chincheta>().estaLibre = true;
-                tablon.endPoint.GetComponent<Chincheta>().estaLibre = true;
-                Destroy(tablon.gameObject);
-            }
-            tablones.Clear();
 
             for (int i = 0; i < cuerdas.Count; i++)
             {
@@ -110,12 +102,33 @@ public class MouseController : MonoBehaviour
                     Destroy(cuerda.gameObject);
                 }
             }
+            foreach (Tablon tablon in tablones)
+            {
+                tablon.Unlink();
+                tablon.startPoint.GetComponent<Chincheta>().estaLibre = true;
+                tablon.endPoint.GetComponent<Chincheta>().estaLibre = true;
+                Destroy(tablon.gameObject);
+            }
+            tablones.Clear();
         }
 
     }
 
     public void Recortar()
     {
+        for (int i = 0; i < cuerdas.Count; i++)
+        {
+            CuerdaPuente cuerda = cuerdas[i];
+            if (!cuerda.tirando)
+            {
+                cuerda.StartPoint.GetComponent<Chincheta>().estaLibre = true;
+                cuerda.EndPoint.GetComponent<Chincheta>().estaLibre = true;
+                cuerda.StopCalculate();
+                cuerdas.Remove(cuerda);
+                Destroy(cuerda.gameObject);
+            }
+        }
+
         foreach (Tablon tablon in tablones)
         {
             tablon.Unlink();
@@ -125,16 +138,5 @@ public class MouseController : MonoBehaviour
         }
         tablones.Clear();
 
-        for (int i = 0; i < cuerdas.Count; i++)
-        {
-            CuerdaPuente cuerda = cuerdas[i];
-            if (!cuerda.tirando)
-            {
-                cuerda.StartPoint.GetComponent<Chincheta>().estaLibre = true;
-                cuerda.EndPoint.GetComponent<Chincheta>().estaLibre = true;
-                cuerdas.Remove(cuerda);
-                Destroy(cuerda.gameObject);
-            }
-        }
     }
 }

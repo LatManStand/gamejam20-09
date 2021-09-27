@@ -55,6 +55,11 @@ public class CuerdaPuente : MonoBehaviour
         Simulate();
     }
 
+    public void StopCalculate()
+    {
+        StopCoroutine(nameof(Recalculate));
+    }
+
     public IEnumerator Recalculate()
     {
         while (true)

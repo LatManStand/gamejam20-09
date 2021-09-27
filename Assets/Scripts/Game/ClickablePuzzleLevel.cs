@@ -49,6 +49,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
     {
         if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
+            puzzleNumber = puzzleNumber[0] + "." + puzzleNumber[2];
             Debug.Log("Al puzzle " + folderPath + puzzleNumber + "!!");
             GameManager.instance.LoadScene(folderPath + "Level_" + puzzleLevel + "/Puzzle_" + puzzleNumber);
         }

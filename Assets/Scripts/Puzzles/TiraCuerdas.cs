@@ -135,6 +135,10 @@ public class TiraCuerdas : MonoBehaviour
                 {
                     direction.Normalize();
                 }
+                else
+                {
+                    StopTirar();
+                }
                 cuerda.EndPoint.root.position -= direction * speed;
                 cuerda.StartPoint.root.position += direction * speed;
             }
