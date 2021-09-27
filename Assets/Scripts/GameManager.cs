@@ -171,6 +171,9 @@ public class GameManager : MonoBehaviour
         } else if (PlayerPrefs.GetInt("Puzzle_3.1") == 1 && puzzle == 3.2)
         {
             PlayerPrefs.SetInt("Puzzle_4.1", 1);
+        }else
+        {
+            PlayerPrefs.SetInt("Puzzle_" + puzzle + 0.1, 1);
         }
 
         if(puzzle == 4.2)
