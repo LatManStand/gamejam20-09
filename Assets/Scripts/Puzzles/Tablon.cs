@@ -29,12 +29,14 @@ public class Tablon : MonoBehaviour
         chinchetaStart = startPoint.GetComponent<SpriteRenderer>().color;
         chinchetaStart.a = alpha;
         startPoint.GetComponent<SpriteRenderer>().color = chinchetaStart;
+        startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
         if (end != MouseToWorld.instance.transform && end != null)
         {
             endPoint.root.SetParent(transform);
             chinchetaEnd = startPoint.GetComponent<SpriteRenderer>().color;
             chinchetaEnd.a = alpha;
-            startPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
+            endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
+            endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
         }
     }
 
@@ -47,6 +49,8 @@ public class Tablon : MonoBehaviour
             chinchetaEnd = endPoint.GetComponent<SpriteRenderer>().color;
             chinchetaEnd.a = alpha;
             endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
+            endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+
         }
     }
 
@@ -69,15 +73,18 @@ public class Tablon : MonoBehaviour
         chincheta.position = pos;
     }
 
-    private void OnDestroy()
+    public void Unlink()
     {
         chinchetaStart.a = 1.0f;
         startPoint.GetComponent<SpriteRenderer>().color = chinchetaStart;
         startPoint.parent.SetParent(null);
-        if (endPoint != null)
+        if (endPoint != null && endPoint != MouseToWorld.instance)
         {
             chinchetaEnd.a = 1.0f;
-            endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
+            if (endPoint.GetComponent<SpriteRenderer>() != null)
+            {
+                endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
+            }
             if (endPoint.parent != null)
             {
                 endPoint.parent.SetParent(null);

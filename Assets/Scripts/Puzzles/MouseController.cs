@@ -80,15 +80,17 @@ public class MouseController : MonoBehaviour
             clickedChinche = null;
             if (currentTablon != null)
             {
+                currentTablon.Unlink();
                 Destroy(currentTablon.gameObject);
             }
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Escape)) // Input provisional
+        if (Input.GetKeyDown(KeyCode.LeftControl)) // Input provisional
         {
             foreach (Tablon tablon in tablones)
             {
+                tablon.Unlink();
                 tablon.startPoint.GetComponent<Chincheta>().estaLibre = true;
                 tablon.endPoint.GetComponent<Chincheta>().estaLibre = true;
                 Destroy(tablon.gameObject);
@@ -96,11 +98,37 @@ public class MouseController : MonoBehaviour
             tablones.Clear();
             foreach (CuerdaPuente cuerda in cuerdas)
             {
+                if (!cuerda.tirando)
+                {
+                    cuerda.StartPoint.GetComponent<Chincheta>().estaLibre = true;
+                    cuerda.EndPoint.GetComponent<Chincheta>().estaLibre = true;
+                    Destroy(cuerda.gameObject);
+                }
+            }
+            cuerdas.Clear();
+        }
+
+    }
+
+    public void Recortar()
+    {
+        foreach (Tablon tablon in tablones)
+        {
+            tablon.Unlink();
+            tablon.startPoint.GetComponent<Chincheta>().estaLibre = true;
+            tablon.endPoint.GetComponent<Chincheta>().estaLibre = true;
+            Destroy(tablon.gameObject);
+        }
+        tablones.Clear();
+        foreach (CuerdaPuente cuerda in cuerdas)
+        {
+            if (!cuerda.tirando)
+            {
                 cuerda.StartPoint.GetComponent<Chincheta>().estaLibre = true;
                 cuerda.EndPoint.GetComponent<Chincheta>().estaLibre = true;
                 Destroy(cuerda.gameObject);
             }
-            cuerdas.Clear();
         }
+        cuerdas.Clear();
     }
 }

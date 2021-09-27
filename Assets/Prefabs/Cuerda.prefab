@@ -249,7 +249,7 @@ MonoBehaviour:
   cuerda: {fileID: 0}
   clicked: 0
   speed: 0.1
-  distanceMult: 0.05
+  distanceMult: 0.16
 --- !u!58 &895761038259693840
 CircleCollider2D:
   m_ObjectHideFlags: 0

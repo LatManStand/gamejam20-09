@@ -9,7 +9,7 @@ public class TiraCuerdas : MonoBehaviour
 
     public bool clicked = false;
     public float speed = 0.3f;
-    public float distanceMult = 0.2f;
+    public float distanceMult = 1.5f;
 
 
     private void Awake()
@@ -33,12 +33,29 @@ public class TiraCuerdas : MonoBehaviour
         if (clicked && Vector3.Distance(cuerda.ropeSegments[cuerda.segmentLength / 2].posNow, cuerda.ropeSegments[cuerda.segmentLength / 2 - 2].posNow) >
             Vector3.Distance(cuerda.EndPoint.position, cuerda.StartPoint.position) * distanceMult
             && !cuerda.tirando
-            && (Vector2.Dot(cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement, cuerda.EndPoint.position - cuerda.StartPoint.position) <= 0.0f || cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero)
-            && (Vector2.Dot(cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement, cuerda.StartPoint.position - cuerda.EndPoint.position) <= 0.0f || cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero))
+            && (Vector2.Dot(cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement.normalized, (cuerda.EndPoint.position - cuerda.StartPoint.position).normalized) <= 0.3f || cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero)
+            && (Vector2.Dot(cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement.normalized, (cuerda.StartPoint.position - cuerda.EndPoint.position).normalized) <= 0.3f || cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero))
         {
             cuerda.tirando = true;
-            cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.EndPoint.position - cuerda.StartPoint.position;
-            cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.StartPoint.position - cuerda.EndPoint.position;
+
+            if (cuerda.StartPoint.GetComponentInParent<Tablon>() != null)
+            {
+                cuerda.StartPoint.GetComponentInParent<Tablon>().startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+                cuerda.StartPoint.GetComponentInParent<Tablon>().endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+            }
+            else
+            {
+                cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.EndPoint.position - cuerda.StartPoint.position;
+            }
+            if (cuerda.EndPoint.GetComponentInParent<Tablon>() != null)
+            {
+                cuerda.EndPoint.GetComponentInParent<Tablon>().startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+                cuerda.EndPoint.GetComponentInParent<Tablon>().endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+            }
+            else
+            {
+                cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.StartPoint.position - cuerda.EndPoint.position;
+            }
             //clicked = false;
             StartCoroutine(nameof(Tirar));
 
@@ -62,7 +79,17 @@ public class TiraCuerdas : MonoBehaviour
         if (clicked)
         {
             CuerdaPuente.RopeSegment aux = cuerda.ropeSegments[cuerda.segmentLength / 2];
-            Vector3 proj = (cuerda.EndPoint.position + cuerda.StartPoint.position) / 2f + Vector3.Project(MouseToWorld.instance.transform.position, Vector3.Cross(cuerda.EndPoint.position - cuerda.StartPoint.position, Vector3.forward));
+            Vector2 u = MouseToWorld.instance.transform.position - (cuerda.StartPoint.position + cuerda.EndPoint.position) / 2f;
+            // Vector2 v = Vector3.Cross(cuerda.EndPoint.position - cuerda.StartPoint.position, Vector3.forward);
+            Vector2 v = Vector2.Perpendicular(cuerda.EndPoint.position - cuerda.StartPoint.position);
+
+
+            Vector3 proj = Mathf.Cos(Mathf.Deg2Rad * Vector2.Angle(u, v)) * u.magnitude * v.normalized;
+            proj += (cuerda.StartPoint.position + cuerda.EndPoint.position) / 2f;
+            proj.z = -3;
+
+
+            //Vector3 proj = (cuerda.EndPoint.position + cuerda.StartPoint.position) / 2f + Vector3.Project(MouseToWorld.instance.transform.position, Vector3.Cross(cuerda.EndPoint.position - cuerda.StartPoint.position, Vector3.forward));
             //+ ((cuerda.EndPoint.position - cuerda.StartPoint.position) / 2);
             aux.posNow = proj;
             aux.posOld = proj;

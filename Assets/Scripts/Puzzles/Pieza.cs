@@ -16,15 +16,19 @@ public class Pieza : MonoBehaviour
 
     private void Awake()
     {
-        PuzzleManager.instance.piezas++;
+        if (!esTablon)
+        {
+            PuzzleManager.instance.piezas++;
+        }
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Pieza"))
+        if (collision.collider.CompareTag("Pieza") && cuerda != null)
         {
-            if (cuerda != null)
+            Tablon tablon = GetComponentInParent<Tablon>();
+            if (tablon == null)
             {
                 cuerda.StopCoroutine(nameof(cuerda.Tirar));
 
@@ -35,6 +39,22 @@ public class Pieza : MonoBehaviour
                 else
                 {
                     transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
+                }
+            }
+            else
+            {
+                if (collision.collider.gameObject != tablon.startPoint && collision.collider.gameObject != tablon.endPoint)
+                {
+                    cuerda.StopCoroutine(nameof(cuerda.Tirar));
+
+                    if (cuerda.cuerda.StartPoint == this)
+                    {
+                        transform.Translate((cuerda.cuerda.StartPoint.position - cuerda.cuerda.EndPoint.position).normalized * 0.1f);
+                    }
+                    else
+                    {
+                        transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
+                    }
                 }
             }
 

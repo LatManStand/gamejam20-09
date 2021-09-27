@@ -18,7 +18,8 @@ public class PuzzleManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            puzzle = SceneManager.GetActiveScene().name;
+            puzzle = SceneManager.GetActiveScene().path;
+            Cursor.visible = false;
         }
         else if (instance != this)
         {
@@ -37,6 +38,11 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
+
+    public void ReloadScene()
+    {
+        GameManager.instance.LoadScene(puzzle);
+    }
 
 
     public void UI_GoBackToMap()

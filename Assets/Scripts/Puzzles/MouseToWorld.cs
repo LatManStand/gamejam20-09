@@ -27,7 +27,7 @@ public class MouseToWorld : MonoBehaviour
         transform.position = mouseWorldPosition;
         if (oldPosition != transform.position)
         {
-            transform.up = Vector3.Lerp(transform.up, transform.position - oldPosition, 0.3f);
+            transform.up = Vector3.Lerp(transform.up, transform.position - oldPosition, 0.5f);
             //transform.up = transform.position - oldPosition;
         }
         oldPosition = mouseWorldPosition;
