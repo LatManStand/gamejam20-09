@@ -105,9 +105,12 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string nameLevel)
     {
         lastScene = SceneManager.GetActiveScene();
-        if (nameLevel.Equals("Ending") || nameLevel.Equals("Credits"))
+        if (nameLevel.Equals("Credits"))
         {
-            //music.Stop();
+            music.gameObject.SetActive(false);
+        } else if (nameLevel.Equals("MainMenu"))
+        {
+            music.gameObject.SetActive(true);
         }
 
         SceneManager.LoadScene(nameLevel);
