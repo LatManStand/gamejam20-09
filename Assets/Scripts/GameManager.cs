@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public AudioSource music;
     public UnityEngine.Audio.AudioMixer mixer;
 
+    int level;
 
     public AudioClip intro;
     public AudioClip bosque;
@@ -153,15 +154,36 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Puzzle_3.1", 1);
         PlayerPrefs.SetInt("Puzzle_3.2", 1);
 
-        PlayerPrefs.SetInt("Puzzle_4.3", 1);
-        PlayerPrefs.SetInt("Puzzle_4.3", 1);
+        PlayerPrefs.SetInt("Puzzle_4.1", 1);
+        PlayerPrefs.SetInt("Puzzle_4.2", 1);
+
+        level = 0;
     }
 
     public void PuzzleComplete(float puzzle)
     {
-        //Instantiate(endScreen);
-        PlayerPrefs.SetInt("Puzzle_" + puzzle + 0.1, 1);
+        if(PlayerPrefs.GetInt("Puzzle_1.2") == 1 && puzzle == 1.3)
+        {
+            PlayerPrefs.SetInt("Puzzle_2.1", 1);
+        } else if (PlayerPrefs.GetInt("Puzzle_2.2") == 1 && puzzle == 2.3)
+        {
+            PlayerPrefs.SetInt("Puzzle_3.1", 1);
+        } else if (PlayerPrefs.GetInt("Puzzle_3.1") == 1 && puzzle == 3.2)
+        {
+            PlayerPrefs.SetInt("Puzzle_4.1", 1);
+        }
+
+        if(puzzle == 4.2)
+        {
+            Invoke(nameof(LoadCredits), 2.7f);
+        }
+
         Invoke(nameof(LoadSceneMap), 2.7f);
+    }
+
+    public void LoadCredits()
+    {
+        LoadScene("Credits");
     }
 
     public void LoadSceneMap()

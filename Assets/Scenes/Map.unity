@@ -6891,6 +6891,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3957782524123411102, guid: 0a87ff2d28f5fa944a010875806e34ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a87ff2d28f5fa944a010875806e34ae, type: 3}
       propertyPath: m_Name
       value: isla volcan1
