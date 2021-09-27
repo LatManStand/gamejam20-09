@@ -86,7 +86,7 @@ public class CuerdaPuente : MonoBehaviour
 
         for (int i = 1; i < segmentLength; i++)
         {
-            if (!(i == segmentLength / 2 && tirando))
+            if (!(i == segmentLength / 2 && tiraCuerdas.clicked))
             {
 
                 RopeSegment firstSegment = ropeSegments[i];
@@ -124,7 +124,7 @@ public class CuerdaPuente : MonoBehaviour
 
         for (int i = 0; i < segmentLength - 1; i++)
         {
-            if (!((i == segmentLength / 2 - 1 || i == segmentLength / 2) && tirando))
+            if (!((i == segmentLength / 2 - 1 || i == segmentLength / 2) && tiraCuerdas.clicked))
             {
                 RopeSegment firstSeg = ropeSegments[i];
                 RopeSegment secondSeg = ropeSegments[i + 1];
