@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManagerWithDialogue : MonoBehaviour
 {
@@ -34,5 +35,10 @@ public class PuzzleManagerWithDialogue : MonoBehaviour
     {
         dialogue.SetActive(true);
         dialogue.GetComponent<DialogueTrigger>().TriggerDialogue();
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
