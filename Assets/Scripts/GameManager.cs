@@ -144,18 +144,18 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVol", -0.03299108f);
 
         PlayerPrefs.SetInt("Puzzle_1.1", 1);
-        PlayerPrefs.SetInt("Puzzle_1.2", 1);
-        PlayerPrefs.SetInt("Puzzle_1.3", 1);
+        PlayerPrefs.SetInt("Puzzle_1.2", 0);
+        PlayerPrefs.SetInt("Puzzle_1.3", 0);
 
-        PlayerPrefs.SetInt("Puzzle_2.1", 1);
-        PlayerPrefs.SetInt("Puzzle_2.2", 1);
-        PlayerPrefs.SetInt("Puzzle_2.3", 1);
+        PlayerPrefs.SetInt("Puzzle_2.1", 0);
+        PlayerPrefs.SetInt("Puzzle_2.2", 0);
+        PlayerPrefs.SetInt("Puzzle_2.3", 0);
 
-        PlayerPrefs.SetInt("Puzzle_3.1", 1);
-        PlayerPrefs.SetInt("Puzzle_3.2", 1);
+        PlayerPrefs.SetInt("Puzzle_3.1", 0);
+        PlayerPrefs.SetInt("Puzzle_3.2", 0);
 
-        PlayerPrefs.SetInt("Puzzle_4.1", 1);
-        PlayerPrefs.SetInt("Puzzle_4.2", 1);
+        PlayerPrefs.SetInt("Puzzle_4.1", 0);
+        PlayerPrefs.SetInt("Puzzle_4.2", 0);
 
         level = 0;
     }
