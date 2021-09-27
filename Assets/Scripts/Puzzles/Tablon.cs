@@ -14,10 +14,15 @@ public class Tablon : MonoBehaviour
     public Color chinchetaEnd;
     public float alpha;
 
+    private AudioSource audioSource;
+    public AudioClip chin;
+    public AudioClip pon;
+
     private void Awake()
     {
         line = GetComponent<LineRenderer>();
         chincheta = transform.GetChild(0);
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -30,6 +35,9 @@ public class Tablon : MonoBehaviour
         chinchetaStart.a = alpha;
         startPoint.GetComponent<SpriteRenderer>().color = chinchetaStart;
         startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+        startPoint.GetComponent<Collider2D>().enabled = false;
+        audioSource.PlayOneShot(chin);
+
         if (end != MouseToWorld.instance.transform && end != null)
         {
             endPoint.root.SetParent(transform);
@@ -37,6 +45,8 @@ public class Tablon : MonoBehaviour
             chinchetaEnd.a = alpha;
             endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
             endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+            endPoint.GetComponent<Collider2D>().enabled = false;
+            audioSource.PlayOneShot(pon);
         }
     }
 
@@ -50,6 +60,8 @@ public class Tablon : MonoBehaviour
             chinchetaEnd.a = alpha;
             endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
             endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+            endPoint.GetComponent<Collider2D>().enabled = false;
+            audioSource.PlayOneShot(pon);
 
         }
     }
@@ -78,12 +90,14 @@ public class Tablon : MonoBehaviour
         chinchetaStart.a = 1.0f;
         startPoint.GetComponent<SpriteRenderer>().color = chinchetaStart;
         startPoint.parent.SetParent(null);
+        startPoint.GetComponent<Collider2D>().enabled = true;
         if (endPoint != null && endPoint != MouseToWorld.instance)
         {
             chinchetaEnd.a = 1.0f;
             if (endPoint.GetComponent<SpriteRenderer>() != null)
             {
                 endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
+                endPoint.GetComponent<Collider2D>().enabled = true;
             }
             if (endPoint.parent != null)
             {

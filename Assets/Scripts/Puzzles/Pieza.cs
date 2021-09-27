@@ -13,6 +13,8 @@ public class Pieza : MonoBehaviour
 
     public bool esTablon;
 
+    private AudioSource audioSource;
+
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class Pieza : MonoBehaviour
         {
             PuzzleManager.instance.piezas++;
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -30,6 +33,10 @@ public class Pieza : MonoBehaviour
             Tablon tablon = GetComponentInParent<Tablon>();
             if (tablon == null)
             {
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
                 cuerda.StopCoroutine(nameof(cuerda.Tirar));
 
                 if (cuerda.cuerda.StartPoint == this)
@@ -45,6 +52,7 @@ public class Pieza : MonoBehaviour
             {
                 if (collision.collider.gameObject != tablon.startPoint && collision.collider.gameObject != tablon.endPoint)
                 {
+                    audioSource.Play();
                     cuerda.StopCoroutine(nameof(cuerda.Tirar));
 
                     if (cuerda.cuerda.StartPoint == this)

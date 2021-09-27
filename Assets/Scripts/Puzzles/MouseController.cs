@@ -38,6 +38,7 @@ public class MouseController : MonoBehaviour
             currentCuerda.StartPoint = mouseOver.transform;
             currentCuerda.EndPoint = MouseToWorld.instance.transform;
             mouseOver.transform.root.GetComponent<Pieza>().cuerda = currentCuerda.tiraCuerdas;
+            currentCuerda.Chin();
         }
         else if (Input.GetMouseButtonUp(0) && mouseOver != null && clickedChinche != null && mouseOver != clickedChinche)
         {
@@ -46,6 +47,7 @@ public class MouseController : MonoBehaviour
             clickedChinche.GetComponent<Chincheta>().estaLibre = false;
             mouseOver.GetComponent<Chincheta>().estaLibre = false;
             mouseOver.transform.root.GetComponent<Pieza>().cuerda = currentCuerda.tiraCuerdas;
+            currentCuerda.Pon();
             clickedChinche = null;
             currentCuerda = null;
             mouseOver = null;
@@ -96,16 +98,18 @@ public class MouseController : MonoBehaviour
                 Destroy(tablon.gameObject);
             }
             tablones.Clear();
-            foreach (CuerdaPuente cuerda in cuerdas)
+
+            for (int i = 0; i < cuerdas.Count; i++)
             {
+                CuerdaPuente cuerda = cuerdas[i];
                 if (!cuerda.tirando)
                 {
                     cuerda.StartPoint.GetComponent<Chincheta>().estaLibre = true;
                     cuerda.EndPoint.GetComponent<Chincheta>().estaLibre = true;
+                    cuerdas.Remove(cuerda);
                     Destroy(cuerda.gameObject);
                 }
             }
-            cuerdas.Clear();
         }
 
     }
@@ -120,15 +124,17 @@ public class MouseController : MonoBehaviour
             Destroy(tablon.gameObject);
         }
         tablones.Clear();
-        foreach (CuerdaPuente cuerda in cuerdas)
+
+        for (int i = 0; i < cuerdas.Count; i++)
         {
+            CuerdaPuente cuerda = cuerdas[i];
             if (!cuerda.tirando)
             {
                 cuerda.StartPoint.GetComponent<Chincheta>().estaLibre = true;
                 cuerda.EndPoint.GetComponent<Chincheta>().estaLibre = true;
+                cuerdas.Remove(cuerda);
                 Destroy(cuerda.gameObject);
             }
         }
-        cuerdas.Clear();
     }
 }

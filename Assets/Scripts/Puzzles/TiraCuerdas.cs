@@ -11,10 +11,12 @@ public class TiraCuerdas : MonoBehaviour
     public float speed = 0.3f;
     public float distanceMult = 1.5f;
 
+    private AudioSource audioSource;
 
     private void Awake()
     {
         cuerda = transform.GetComponentInParent<CuerdaPuente>();
+        audioSource = transform.GetComponentInParent<AudioSource>();
     }
 
     private void Update()
@@ -54,6 +56,7 @@ public class TiraCuerdas : MonoBehaviour
                 cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.EndPoint.position - cuerda.StartPoint.position;
                 cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.StartPoint.position - cuerda.EndPoint.position;
                 cuerda.tirando = true;
+                audioSource.Play();
                 StartCoroutine(nameof(Tirar));
 
             }

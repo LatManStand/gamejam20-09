@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Globalization;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -11,6 +13,13 @@ public class GameManager : MonoBehaviour
     public string language;
     public AudioSource music;
     public UnityEngine.Audio.AudioMixer mixer;
+
+    public AudioClip intro;
+    public AudioClip bosque;
+    public AudioClip playa;
+    public AudioClip nieve;
+    public AudioClip volcan;
+
 
     public Scene lastScene;
     public GameObject endScreen;
@@ -24,6 +33,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            music = GetComponent<AudioSource>();
         }
         else if (instance != this)
         {
@@ -146,7 +156,7 @@ public class GameManager : MonoBehaviour
     {
         //Instantiate(endScreen);
         PlayerPrefs.SetInt("Puzzle_" + puzzle + 0.1, 1);
-        Invoke(nameof(LoadSceneMap), 3f);
+        Invoke(nameof(LoadSceneMap), 2.7f);
     }
 
     public void LoadSceneMap()
@@ -176,5 +186,69 @@ public class GameManager : MonoBehaviour
         var newVolumen = Mathf.Log10(value) * 20;
         mixer.SetFloat("SFXVol", newVolumen);
         PlayerPrefs.SetFloat("SFXVol", newVolumen);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Cursor.visible = true;
+
+        if (scene.name == "Creditos")
+        {
+            music.Stop();
+        }
+        else if (scene.name == "MainMenu")
+        {
+            music.Stop();
+            music.clip = intro;
+            music.Play();
+        }
+        {
+            string path = scene.name;
+            int aux = path.IndexOf(".");
+            if (aux > 1)
+            {
+                float nivel = float.Parse(path.Substring(aux - 1, 3), CultureInfo.InvariantCulture);
+
+                float tiempo = 0f;
+                if (music.clip != intro)
+                {
+                    tiempo = music.time / music.clip.length;
+                }
+                else
+                {
+                    music.Stop();
+                }
+
+                if (nivel < 2f)
+                {
+                    music.clip = bosque;
+                }
+                else if (nivel > 2f && nivel < 3f)
+                {
+                    music.clip = playa;
+                }
+                else if (nivel > 3f && nivel < 4f)
+                {
+                    music.clip = nieve;
+                }
+                else if (nivel > 4f)
+                {
+                    music.clip = volcan;
+                }
+                music.Play();
+                music.time = tiempo * music.clip.length;
+            }
+
+        }
     }
 }

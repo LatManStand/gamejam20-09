@@ -16,21 +16,28 @@ public class PuzzleManager : MonoBehaviour
     [HideInInspector]
     public string puzzle;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             puzzle = SceneManager.GetActiveScene().path;
-            Cursor.visible = false;
             int aux = puzzle.IndexOf(".");
             //nivel = float.Parse(puzzle.Substring(aux + 1));
             nivel = float.Parse(puzzle.Substring(aux - 1, 3), CultureInfo.InvariantCulture);
+            audioSource = GetComponent<AudioSource>();
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        Cursor.visible = false;
     }
 
 
@@ -39,6 +46,7 @@ public class PuzzleManager : MonoBehaviour
         if (piezasColocadas == piezas && !completado)
         {
             completado = true;
+            audioSource.Play();
             GameManager.instance.PuzzleComplete(nivel);
         }
     }

@@ -22,12 +22,18 @@ public class CuerdaPuente : MonoBehaviour
 
     public TiraCuerdas tiraCuerdas;
 
+
+    private AudioSource audioSource;
+    public AudioClip chin;
+    public AudioClip pon;
+
     // Use this for initialization
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         Vector3 ropeStartPoint = StartPoint.position - Vector3.forward * 3.1f;
         tiraCuerdas = transform.GetChild(0).GetComponent<TiraCuerdas>();
+        audioSource = transform.GetComponent<AudioSource>();
 
         for (int i = 0; i < segmentLength; i++)
         {
@@ -53,7 +59,7 @@ public class CuerdaPuente : MonoBehaviour
     {
         while (true)
         {
-            int desiredSegmentLength = Mathf.CeilToInt(Vector2.Distance(StartPoint.position, EndPoint.position) / ropeSegLen * 1.05f + 5);
+            int desiredSegmentLength = Mathf.CeilToInt(Vector2.Distance(StartPoint.position, EndPoint.position) / ropeSegLen + 5);
 
             if (desiredSegmentLength < segmentLength * 0.9f)
             {
@@ -139,9 +145,9 @@ public class CuerdaPuente : MonoBehaviour
                 Vector3 changeAmount = changeDir * error;
                 if (i != 0)
                 {
-                    firstSeg.posNow -= changeAmount * 0.5f;
+                    firstSeg.posNow -= changeAmount * 0.7f; // AQUI TOCO DESDE 0.5
                     ropeSegments[i] = firstSeg;
-                    secondSeg.posNow += changeAmount * 0.5f;
+                    secondSeg.posNow += changeAmount * 0.7f;
                     ropeSegments[i + 1] = secondSeg;
                 }
                 else
@@ -178,5 +184,15 @@ public class CuerdaPuente : MonoBehaviour
             posNow = pos;
             posOld = pos;
         }
+    }
+
+    public void Chin()
+    {
+        audioSource.PlayOneShot(chin);
+    }
+
+    public void Pon()
+    {
+        audioSource.PlayOneShot(pon);
     }
 }
