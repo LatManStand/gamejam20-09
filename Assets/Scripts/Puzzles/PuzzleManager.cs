@@ -10,6 +10,8 @@ public class PuzzleManager : MonoBehaviour
     public int piezas;
     public int piezasColocadas;
 
+    public bool completado;
+
     public float nivel;
     [HideInInspector]
     public string puzzle;
@@ -34,8 +36,9 @@ public class PuzzleManager : MonoBehaviour
 
     private void Update()
     {
-        if (piezasColocadas == piezas)
+        if (piezasColocadas == piezas && !completado)
         {
+            completado = true;
             GameManager.instance.PuzzleComplete(nivel);
         }
     }
