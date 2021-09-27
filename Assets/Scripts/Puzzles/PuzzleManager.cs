@@ -9,6 +9,7 @@ public class PuzzleManager : MonoBehaviour
     public static PuzzleManager instance;
     public int piezas;
     public int piezasColocadas;
+    public GameObject puzzleCompletadoIMAGEN;
 
     public bool completado;
 
@@ -23,6 +24,7 @@ public class PuzzleManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            puzzleCompletadoIMAGEN.SetActive(false);
             puzzle = SceneManager.GetActiveScene().path;
             int aux = puzzle.IndexOf(".");
             //nivel = float.Parse(puzzle.Substring(aux + 1));
@@ -47,6 +49,7 @@ public class PuzzleManager : MonoBehaviour
         {
             completado = true;
             audioSource.Play();
+            puzzleCompletadoIMAGEN.SetActive(true);
             GameManager.instance.PuzzleComplete(nivel);
         }
     }
