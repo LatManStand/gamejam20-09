@@ -1277,6 +1277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: isla volcan2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5cd96e97bd4961942bd9c3ad34551926, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cd96e97bd4961942bd9c3ad34551926, type: 3}
 --- !u!4 &290012390 stripped
@@ -3004,7 +3008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1830973254543074402, guid: 4814bec5722b55f4cbc0dfdaac5b00f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5772552
+      value: 36.1
       objectReference: {fileID: 0}
     - target: {fileID: 1830973254543074402, guid: 4814bec5722b55f4cbc0dfdaac5b00f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3012,7 +3016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1830973254543074402, guid: 4814bec5722b55f4cbc0dfdaac5b00f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.243256
+      value: 43.8
       objectReference: {fileID: 0}
     - target: {fileID: 1830973254543074402, guid: 4814bec5722b55f4cbc0dfdaac5b00f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6849,7 +6853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a87ff2d28f5fa944a010875806e34ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.6
+      value: 21.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a87ff2d28f5fa944a010875806e34ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6857,7 +6861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a87ff2d28f5fa944a010875806e34ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 40.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a87ff2d28f5fa944a010875806e34ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7367,6 +7371,10 @@ PrefabInstance:
     - target: {fileID: 8715860792876625642, guid: 4814bec5722b55f4cbc0dfdaac5b00f9, type: 3}
       propertyPath: m_Name
       value: EffectSelection_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715860792876625642, guid: 4814bec5722b55f4cbc0dfdaac5b00f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8814413871118079908, guid: 4814bec5722b55f4cbc0dfdaac5b00f9, type: 3}
       propertyPath: m_LocalScale.x
