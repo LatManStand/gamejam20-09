@@ -143,37 +143,43 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("musicVol", -0.03299108f);
         PlayerPrefs.SetFloat("SFXVol", -0.03299108f);
 
-        PlayerPrefs.SetInt("Puzzle_1.1", 1);
-        PlayerPrefs.SetInt("Puzzle_1.2", 0);
-        PlayerPrefs.SetInt("Puzzle_1.3", 0);
+        PlayerPrefs.SetInt("Puzzle_1,1", 1);
+        PlayerPrefs.SetInt("Puzzle_1,2", 0);
+        PlayerPrefs.SetInt("Puzzle_1,3", 0);
 
-        PlayerPrefs.SetInt("Puzzle_2.1", 0);
-        PlayerPrefs.SetInt("Puzzle_2.2", 0);
-        PlayerPrefs.SetInt("Puzzle_2.3", 0);
+        PlayerPrefs.SetInt("Puzzle_2,1", 0);
+        PlayerPrefs.SetInt("Puzzle_2,2", 0);
+        PlayerPrefs.SetInt("Puzzle_2,3", 0);
 
-        PlayerPrefs.SetInt("Puzzle_3.1", 0);
-        PlayerPrefs.SetInt("Puzzle_3.2", 0);
+        PlayerPrefs.SetInt("Puzzle_3,1", 0);
+        PlayerPrefs.SetInt("Puzzle_3,2", 0);
 
-        PlayerPrefs.SetInt("Puzzle_4.1", 0);
-        PlayerPrefs.SetInt("Puzzle_4.2", 0);
+        PlayerPrefs.SetInt("Puzzle_4,1", 0);
+        PlayerPrefs.SetInt("Puzzle_4,2", 0);
 
         level = 0;
     }
 
     public void PuzzleComplete(float puzzle)
     {
-        if(PlayerPrefs.GetInt("Puzzle_1.2") == 1 && puzzle == 1.3)
+        Debug.Log(puzzle);
+        if(PlayerPrefs.GetInt("Puzzle_1,2") == 1 && puzzle == 1.3)
         {
-            PlayerPrefs.SetInt("Puzzle_2.1", 1);
-        } else if (PlayerPrefs.GetInt("Puzzle_2.2") == 1 && puzzle == 2.3)
+            PlayerPrefs.SetInt("Puzzle_2,1", 1);
+        } 
+        else if (PlayerPrefs.GetInt("Puzzle_2,2") == 1 && puzzle == 2.3)
         {
-            PlayerPrefs.SetInt("Puzzle_3.1", 1);
-        } else if (PlayerPrefs.GetInt("Puzzle_3.1") == 1 && puzzle == 3.2)
+            PlayerPrefs.SetInt("Puzzle_3,1", 1);
+        } 
+        else if (PlayerPrefs.GetInt("Puzzle_3,1") == 1 && puzzle == 3.2)
         {
-            PlayerPrefs.SetInt("Puzzle_4.1", 1);
-        }else
+            PlayerPrefs.SetInt("Puzzle_4,1", 1);
+        } 
+        else
         {
-            PlayerPrefs.SetInt("Puzzle_" + puzzle + 0.1, 1);
+            float number = puzzle + 0.1f;
+            Debug.Log("Puzzle_" + number);
+            PlayerPrefs.SetInt("Puzzle_" + number, 1);
         }
 
         if(puzzle == 4.2)
