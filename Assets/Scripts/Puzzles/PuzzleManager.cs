@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,7 @@ public class PuzzleManager : MonoBehaviour
     public int piezas;
     public int piezasColocadas;
 
-    public string nivel;
+    public float nivel;
     [HideInInspector]
     public string puzzle;
 
@@ -20,6 +21,9 @@ public class PuzzleManager : MonoBehaviour
             instance = this;
             puzzle = SceneManager.GetActiveScene().path;
             Cursor.visible = false;
+            int aux = puzzle.IndexOf(".");
+            //nivel = float.Parse(puzzle.Substring(aux + 1));
+            nivel = float.Parse(puzzle.Substring(aux - 1, 3), CultureInfo.InvariantCulture);
         }
         else if (instance != this)
         {
@@ -32,9 +36,7 @@ public class PuzzleManager : MonoBehaviour
     {
         if (piezasColocadas == piezas)
         {
-            // ALEX, AQUI ACABA EL NIVEL
-
-            //GameManager.instance.
+            GameManager.instance.PuzzleComplete(nivel);
         }
     }
 

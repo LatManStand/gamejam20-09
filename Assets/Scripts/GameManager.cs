@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public UnityEngine.Audio.AudioMixer mixer;
 
     public Scene lastScene;
+    public GameObject endScreen;
 
     private bool isGamePaused;
 
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
         isGamePaused = false;
     }
 
-    public bool isPause ()
+    public bool isPause()
     {
         return isGamePaused;
     }
@@ -143,6 +144,7 @@ public class GameManager : MonoBehaviour
 
     public void PuzzleComplete(float puzzle)
     {
+        //Instantiate(endScreen);
         PlayerPrefs.SetInt("Puzzle_" + puzzle + 0.1, 1);
         Invoke(nameof(LoadSceneMap), 3f);
     }
@@ -154,7 +156,7 @@ public class GameManager : MonoBehaviour
 
     public void setMusicControl(float value)
     {
-        if(value == 0)
+        if (value == 0)
         {
             return;
         }

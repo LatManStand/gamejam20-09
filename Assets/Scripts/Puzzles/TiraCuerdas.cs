@@ -32,32 +32,31 @@ public class TiraCuerdas : MonoBehaviour
         */
         if (clicked && Vector3.Distance(cuerda.ropeSegments[cuerda.segmentLength / 2].posNow, cuerda.ropeSegments[cuerda.segmentLength / 2 - 2].posNow) >
             Vector3.Distance(cuerda.EndPoint.position, cuerda.StartPoint.position) * distanceMult
-            && !cuerda.tirando
-            && (Vector2.Dot(cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement.normalized, (cuerda.EndPoint.position - cuerda.StartPoint.position).normalized) <= 0.3f || cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero)
-            && (Vector2.Dot(cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement.normalized, (cuerda.StartPoint.position - cuerda.EndPoint.position).normalized) <= 0.3f || cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero))
+            && !cuerda.tirando)
         {
-            cuerda.tirando = true;
-
-            if (cuerda.StartPoint.GetComponentInParent<Tablon>() != null)
+            Tablon tablon = cuerda.StartPoint.GetComponentInParent<Tablon>();
+            if (tablon != null)
             {
-                cuerda.StartPoint.GetComponentInParent<Tablon>().startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
-                cuerda.StartPoint.GetComponentInParent<Tablon>().endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+                tablon.startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+                tablon.endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+
             }
-            else
+            tablon = cuerda.EndPoint.GetComponentInParent<Tablon>();
+            if (tablon != null)
+            {
+                tablon.startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+                tablon.endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
+            }
+
+            if (Vector2.Dot(cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement.normalized, (cuerda.EndPoint.position - cuerda.StartPoint.position).normalized) <= 0.3f || cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero
+            && (Vector2.Dot(cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement.normalized, (cuerda.StartPoint.position - cuerda.EndPoint.position).normalized) <= 0.3f || cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement == Vector2.zero))
             {
                 cuerda.StartPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.EndPoint.position - cuerda.StartPoint.position;
-            }
-            if (cuerda.EndPoint.GetComponentInParent<Tablon>() != null)
-            {
-                cuerda.EndPoint.GetComponentInParent<Tablon>().startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
-                cuerda.EndPoint.GetComponentInParent<Tablon>().endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
-            }
-            else
-            {
                 cuerda.EndPoint.GetComponentInParent<Pieza>().lastMovement = cuerda.StartPoint.position - cuerda.EndPoint.position;
+                cuerda.tirando = true;
+                StartCoroutine(nameof(Tirar));
+
             }
-            //clicked = false;
-            StartCoroutine(nameof(Tirar));
 
         }
 
