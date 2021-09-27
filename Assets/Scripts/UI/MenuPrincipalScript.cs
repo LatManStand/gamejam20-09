@@ -6,7 +6,6 @@ using UnityEngine;
 public class MenuPrincipalScript : MonoBehaviour
 {
     public GameObject menu1;
-    public GameObject menu2;
     //public GameObject video;
     //public GameObject backgroud;
 
@@ -18,7 +17,6 @@ public class MenuPrincipalScript : MonoBehaviour
     private void OpenMenu1()
     {
         menu1.SetActive(true);
-        menu2.SetActive(false);
         //backgroud.SetActive(true);
         //video.SetActive(false);
     }
@@ -26,7 +24,6 @@ public class MenuPrincipalScript : MonoBehaviour
     private void OpenMenu2()
     {
         menu1.SetActive(false);
-        menu2.SetActive(true);
         //backgroud.SetActive(true);
         //video.SetActive(false);
     }

@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
         SaveData();
 
         // LOAD THE INITIAL PUZZLE
-        GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
+        //GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
+        GameManager.instance.LoadScene("Map");
     }
 
     public void ContinueGame()
@@ -118,7 +119,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
     private void setNewGame()
     {
         PlayerPrefs.SetInt("new_game", 1);
@@ -126,10 +126,30 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("musicVol", -0.03299108f);
         PlayerPrefs.SetFloat("SFXVol", -0.03299108f);
 
-        PlayerPrefs.SetInt("puzzle_1.1", 1);
-        PlayerPrefs.SetInt("puzzle_1.2", 0);
-        PlayerPrefs.SetInt("puzzle_1.3", 0);
-        PlayerPrefs.SetInt("puzzle_1.4", 0);
+        PlayerPrefs.SetInt("Puzzle_1.1", 1);
+        PlayerPrefs.SetInt("Puzzle_1.2", 1);
+        PlayerPrefs.SetInt("Puzzle_1.3", 1);
+
+        PlayerPrefs.SetInt("Puzzle_2.1", 1);
+        PlayerPrefs.SetInt("Puzzle_2.2", 1);
+        PlayerPrefs.SetInt("Puzzle_2.3", 1);
+
+        PlayerPrefs.SetInt("Puzzle_3.1", 1);
+        PlayerPrefs.SetInt("Puzzle_3.2", 1);
+
+        PlayerPrefs.SetInt("Puzzle_4.3", 1);
+        PlayerPrefs.SetInt("Puzzle_4.3", 1);
+    }
+
+    public void PuzzleComplete(float puzzle)
+    {
+        PlayerPrefs.SetInt("Puzzle_" + puzzle + 0.1, 1);
+        Invoke(nameof(LoadSceneMap), 3f);
+    }
+
+    public void LoadSceneMap()
+    {
+        LoadScene("Map");
     }
 
     public void setMusicControl(float value)

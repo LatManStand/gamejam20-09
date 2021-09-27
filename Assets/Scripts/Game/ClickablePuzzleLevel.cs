@@ -21,10 +21,10 @@ public class ClickablePuzzleLevel : MonoBehaviour
         objTextureRender = obj_material.GetComponent<Renderer>();
         cWL = this.gameObject.GetComponentInParent<ClickableWorlLevel>();
         obj_selection.SetActive(false);
-        isUnlocked = PlayerPrefs.GetInt("puzzle_" + puzzleNumber) == 1 ? true : false;
+        isUnlocked = PlayerPrefs.GetInt("Puzzle_" + puzzleNumber) == 1 ? true : false;
         if (!isUnlocked)
         {
-            Darken(65);
+            Darken(0.5f);
         }
     }
 
@@ -32,6 +32,7 @@ public class ClickablePuzzleLevel : MonoBehaviour
     {
         if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
+            Debug.Log("eh");
             obj_selection.SetActive(true);
         }
     }
@@ -48,9 +49,6 @@ public class ClickablePuzzleLevel : MonoBehaviour
     {
         if (!GameManager.instance.isPause() && cWL.getIsSelected() && isUnlocked)
         {
-            //selected = true;
-            //var mp = mapManager.GetComponent<MapManager>();
-            //mp.goToLevel(levelNumber);
             Debug.Log("Al puzzle " + folderPath + puzzleNumber + "!!");
             GameManager.instance.LoadScene(folderPath + "Level_" + puzzleLevel + "/Puzzle_" + puzzleNumber);
         }
@@ -58,6 +56,16 @@ public class ClickablePuzzleLevel : MonoBehaviour
     public void Darken(float percent)
     {
         percent = Mathf.Clamp01(percent);
-        objTextureRender.material.color = new Color (objTextureRender.material.color.r * (1 - percent), objTextureRender.material.color.g * (1 - percent), objTextureRender.material.color.b * (1 - percent), objTextureRender.material.color.a);
+        List<Material> listMaterials = new List<Material>();
+        objTextureRender.GetMaterials(listMaterials);
+
+        foreach( var material in listMaterials)
+        {
+            material.color = new Color(objTextureRender.material.color.r * (1 - percent), objTextureRender.material.color.g * (1 - percent), objTextureRender.material.color.b * (1 - percent), objTextureRender.material.color.a);
+        }
+
+        //objTextureRender.material.color = new Color (objTextureRender.material.color.r * (1 - percent), objTextureRender.material.color.g * (1 - percent), objTextureRender.material.color.b * (1 - percent), objTextureRender.material.color.a);
+        ////objTextureRender.GetMaterials(listMaterials); material.color = new Color (objTextureRender.material.color.r * (1 - percent), objTextureRender.material.color.g * (1 - percent), objTextureRender.material.color.b * (1 - percent), objTextureRender.material.color.a);
+        //objTextureRender.material.color = new Color (objTextureRender.material.color.r * (1 - percent), objTextureRender.material.color.g * (1 - percent), objTextureRender.material.color.b * (1 - percent), objTextureRender.material.color.a);
     }
 }
