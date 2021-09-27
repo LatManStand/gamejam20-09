@@ -10,7 +10,7 @@ public class Chincheta : MonoBehaviour
 
     private void Awake()
     {
-        inicial = transform.parent.position;
+        inicial = transform.root.position;
     }
 
 

@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Tortilla Games
   productName: Teje-mundos
-  defaultCursor: {fileID: 2800000, guid: 2cbd293f06d72914d9a229a746001912, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 3b089bb6f0153a646a12f3ee1343cdf3, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1

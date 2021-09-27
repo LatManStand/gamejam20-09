@@ -35,8 +35,10 @@ public class Tablon : MonoBehaviour
         chinchetaStart.a = alpha;
         startPoint.GetComponent<SpriteRenderer>().color = chinchetaStart;
         startPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
-        startPoint.GetComponent<Collider2D>().enabled = false;
         audioSource.PlayOneShot(chin);
+
+            startPoint.GetComponent<Collider2D>().enabled = false;
+        
 
         if (end != MouseToWorld.instance.transform && end != null)
         {
@@ -45,8 +47,10 @@ public class Tablon : MonoBehaviour
             chinchetaEnd.a = alpha;
             endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
             endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
-            endPoint.GetComponent<Collider2D>().enabled = false;
             audioSource.PlayOneShot(pon);
+
+                endPoint.GetComponent<Collider2D>().enabled = false;
+            
         }
     }
 
@@ -60,8 +64,10 @@ public class Tablon : MonoBehaviour
             chinchetaEnd.a = alpha;
             endPoint.GetComponent<SpriteRenderer>().color = chinchetaEnd;
             endPoint.GetComponentInParent<Pieza>().lastMovement = Vector2.zero;
-            endPoint.GetComponent<Collider2D>().enabled = false;
             audioSource.PlayOneShot(pon);
+
+            endPoint.GetComponent<Collider2D>().enabled = false;
+
 
         }
     }

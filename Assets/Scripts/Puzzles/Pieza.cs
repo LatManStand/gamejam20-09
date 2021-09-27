@@ -28,32 +28,18 @@ public class Pieza : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Pieza") && cuerda != null)
+        if (collision.collider.CompareTag("Pieza"))
         {
             Tablon tablon = GetComponentInParent<Tablon>();
-            if (tablon == null)
+            if (cuerda != null)
             {
-                if (audioSource != null)
+                if (tablon == null)
                 {
-                    audioSource.Play();
-                }
-                cuerda.StopCoroutine(nameof(cuerda.Tirar));
-
-                if (cuerda.cuerda.StartPoint == this)
-                {
-                    transform.Translate((cuerda.cuerda.StartPoint.position - cuerda.cuerda.EndPoint.position).normalized * 0.1f);
-                }
-                else
-                {
-                    transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
-                }
-            }
-            else
-            {
-                if (collision.collider.gameObject != tablon.startPoint && collision.collider.gameObject != tablon.endPoint)
-                {
-                    audioSource.Play();
-                    cuerda.StopCoroutine(nameof(cuerda.Tirar));
+                    if (audioSource != null)
+                    {
+                        audioSource.Play();
+                    }
+                    cuerda.StopTirar();
 
                     if (cuerda.cuerda.StartPoint == this)
                     {
@@ -64,8 +50,40 @@ public class Pieza : MonoBehaviour
                         transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
                     }
                 }
-            }
+                else
+                {
+                    if (audioSource != null)
+                    {
+                        audioSource.Play();
+                    }
+                    cuerda.StopTirar();
 
+                    if (cuerda.cuerda.StartPoint == this)
+                    {
+                        transform.Translate((cuerda.cuerda.StartPoint.position - cuerda.cuerda.EndPoint.position).normalized * 0.1f);
+                    }
+                    else
+                    {
+                        transform.Translate((cuerda.cuerda.EndPoint.position - cuerda.cuerda.StartPoint.position).normalized * 0.1f);
+                    }
+                }
+
+            }
+            else
+            {
+                if (tablon != null)
+                {
+                    if (collision.collider.gameObject != tablon.startPoint && collision.collider.gameObject != tablon.endPoint)
+                    {
+                        if (audioSource != null)
+                        {
+                            audioSource.Play();
+                        }
+
+                        tablon.GetComponent<Pieza>().cuerda.StopTirar();
+                    }
+                }
+            }
         }
     }
 

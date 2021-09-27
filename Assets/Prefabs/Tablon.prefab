@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -1102412403398854957}
   - component: {fileID: 4133408671622579821}
   - component: {fileID: 3216851637875661604}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Tablon
-  m_TagString: Untagged
+  m_TagString: Pieza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

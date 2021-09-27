@@ -14,12 +14,14 @@ public class GameManager : MonoBehaviour
     public AudioSource music;
     public UnityEngine.Audio.AudioMixer mixer;
 
+
     public AudioClip intro;
     public AudioClip bosque;
     public AudioClip playa;
     public AudioClip nieve;
     public AudioClip volcan;
 
+    public Texture2D cursor;
 
     public Scene lastScene;
     public GameObject endScreen;
@@ -63,8 +65,8 @@ public class GameManager : MonoBehaviour
         SaveData();
 
         // LOAD THE INITIAL PUZZLE
-        //GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
-        GameManager.instance.LoadScene("Map");
+        GameManager.instance.LoadScene("Scenes/Puzzles/Level_1/Puzzle_1.1");
+        //GameManager.instance.LoadScene("Map");
     }
 
     public void ContinueGame()
@@ -201,6 +203,7 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Cursor.visible = true;
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
 
         if (scene.name == "Creditos")
         {

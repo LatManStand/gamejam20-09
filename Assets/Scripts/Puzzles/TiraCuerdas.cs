@@ -58,7 +58,6 @@ public class TiraCuerdas : MonoBehaviour
                 cuerda.tirando = true;
                 audioSource.Play();
                 StartCoroutine(nameof(Tirar));
-
             }
 
         }
@@ -68,11 +67,11 @@ public class TiraCuerdas : MonoBehaviour
         {
             StartCoroutine(nameof(Tirar));
         }
-        else */
-        if (Input.GetKeyUp(KeyCode.T))
+        else if (Input.GetKeyUp(KeyCode.T))
         {
             StopCoroutine(nameof(Tirar));
         }
+        */
     }
 
     void FixedUpdate()
@@ -118,6 +117,12 @@ public class TiraCuerdas : MonoBehaviour
         transform.position = cuerda.ropeSegments[cuerda.segmentLength / 2].posNow;
     }
 
+    public void StopTirar()
+    {
+        StopCoroutine(nameof(Tirar));
+        cuerda.tirando = false;
+    }
+
     public IEnumerator Tirar()
     {
         while (true)
@@ -144,7 +149,6 @@ public class TiraCuerdas : MonoBehaviour
     private void OnMouseUp()
     {
         clicked = false;
-        cuerda.tirando = false;
     }
 
 }
